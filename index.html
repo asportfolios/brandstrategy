@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Caveat:wght@600;700&family=Playfair+Display:ital,wght@1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#102336;
+    --navy-2:#1d3f5c;
+    --paper:#f5f6f8;
+    --ink:#1b2a36;
+    --muted:#6d7580;
+    --line:#d6d6d6;
+    --accent:#5d88bb;
+    --accent-2:#3f6690;
+    --accent-soft:#b3cbe4;
+    --card:#ffffff;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,h4{font-family:"Inter","Helvetica Neue",Arial,sans-serif; margin:0; letter-spacing:-0.01em;}
+  p{margin:0 0 12px 0;}
+  a{color:var(--accent-2);}
+  .container{max-width:1040px; margin:0 auto; padding:0 28px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .container{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  }
+  .nav-name{font-weight:700; font-size:15px; letter-spacing:0.02em; color:var(--navy);}
+  .nav-logo{height:26px; width:auto; display:block;}
+  .nav-links{display:flex; gap:22px; font-size:13px; text-transform:uppercase; letter-spacing:0.06em;}
+  .nav-links a{color:var(--muted); text-decoration:none; font-weight:600;}
+  .nav-links a:hover{color:var(--accent);}
+  @media(max-width:640px){ .nav-links{gap:12px; font-size:11px;} }
+
+  /* HERO */
+  header.hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 65%, #2f5478 100%);
+    color:#d6d6d6;
+    padding:78px 0 64px 0;
+  }
+  header.hero .eyebrow{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    text-transform:uppercase; letter-spacing:0.18em; font-size:12px;
+    color:var(--accent-soft); opacity:0.85; margin-bottom:14px; font-weight:600;
+  }
+  header.hero h1{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    font-size:48px; line-height:1.08; color:#fff; max-width:900px;
+    font-weight:700; letter-spacing:-0.02em;
+  }
+  header.hero .role{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    font-size:18px; color:var(--accent-soft); margin-top:14px; font-weight:400;
+  }
+  header.hero .lede{
+    max-width:640px; margin-top:20px; font-size:16.5px; color:#dfe1e6;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:400;
+  }
+  .hero-meta{
+    margin-top:28px; display:flex; flex-wrap:wrap; gap:10px;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  }
+  .pill{
+    border:1px solid rgba(255,255,255,0.25);
+    color:#d6d6d6;
+    padding:6px 14px; border-radius:999px; font-size:12.5px;
+  }
+  .hero-cta{
+    display:inline-block; margin-top:26px; padding:15px 32px; border-radius:999px;
+    background:#fff; color:var(--navy); font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    font-size:16px; font-weight:700; text-decoration:none; cursor:pointer; border:none;
+    box-shadow:0 4px 14px rgba(0,0,0,0.18); transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .hero-cta:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.26); }
+
+  section{padding:64px 0;}
+  section.tight{padding:44px 0;}
+  .section-head{margin-bottom:34px;}
+  .kicker{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; text-transform:uppercase;
+    letter-spacing:0.16em; font-size:12px; color:var(--accent-2); font-weight:700; margin-bottom:8px;
+  }
+  .section-head h2{font-size:30px; color:var(--navy);}
+  .section-head .sub{color:var(--muted); font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15px; max-width:640px; margin-top:8px;}
+
+  /* ABOUT */
+  #about .about-grid{display:grid; grid-template-columns:1.4fr 1fr; gap:40px;}
+  #about p{font-size:16px; color:#333; text-align:justify;}
+  .about-stats{
+    height:100%; display:flex; flex-direction:column; justify-content:flex-start; align-items:center; gap:0;
+  }
+  .stat-box{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    width:100%; min-height:66px;
+  }
+  .stat-box .num{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:88px;
+    line-height:1; text-align:center; position:relative; z-index:2;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    background:linear-gradient(180deg, #7f9db3 0%, #3f6690 16%, #1d3f5c 34%, #5d88bb 52%, #294a68 70%, #7f9db3 86%, #3f6690 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    -webkit-text-fill-color:transparent;
+    filter:drop-shadow(0 1px 1px rgba(16,35,54,0.35));
+  }
+  .about-stats .stat-box:nth-child(1) .num{ font-size:104px; }
+  .about-stats .stat-box:nth-child(2) .num{ font-size:76px; }
+  .about-stats .stat-box:nth-child(3) .num{ font-size:56px; }
+  .stat-box .label{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:17px; color:#333;
+    position:absolute; left:0; right:0; top:50%; transform:translateY(-50%);
+    text-align:center; line-height:1.3; opacity:0; transition:opacity 0.25s ease;
+    z-index:1; pointer-events:none;
+  }
+  .about-stats .stat-box:nth-child(1) .label{ font-size:20px; }
+  .about-stats .stat-box:nth-child(2) .label{ font-size:16px; }
+  .about-stats .stat-box:nth-child(3) .label{ font-size:13px; }
+  .stat-box:hover .label{ opacity:1; }
+  .stat-box:hover .num{ opacity:0.55; transform:scale(0.88); }
+  .stat-box.stat-clickable{ cursor:pointer; }
+  @media(max-width:760px){
+    #about .about-grid{grid-template-columns:1fr;}
+    .about-stats .stat-box:nth-child(1) .num{font-size:72px;}
+    .about-stats .stat-box:nth-child(2) .num{font-size:56px;}
+    .about-stats .stat-box:nth-child(3) .num{font-size:42px;}
+    .about-stats .stat-box:nth-child(1) .label{font-size:17px;}
+    .about-stats .stat-box:nth-child(2) .label{font-size:14px;}
+    .about-stats .stat-box:nth-child(3) .label{font-size:12px;}
+    .stat-box{min-height:80px;}
+  }
+
+  /* PHOTO GALLERY (carousel) */
+  #gallery{background:#d6d6d6; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .photo-carousel{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    gap:18px; height:310px; margin-top:8px;
+  }
+  .pc-slide{
+    position:relative;
+    border-radius:var(--radius); overflow:hidden; background:#000; flex-shrink:0;
+    border:1px solid var(--line);
+    box-shadow:0 10px 26px rgba(27,36,48,0.18);
+    transition:width 0.4s ease, height 0.4s ease, opacity 0.4s ease, filter 0.4s ease, box-shadow 0.4s ease;
+  }
+  .cc-title{
+    position:absolute; left:0; right:0; bottom:0; z-index:4; pointer-events:none;
+    padding:22px 12px 14px 12px;
+    background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0) 100%);
+    color:#fff; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:16px;
+    text-align:center; letter-spacing:0.01em;
+  }
+  .pc-slide.pc-side .cc-title{font-size:12.5px; padding:16px 8px 10px 8px;}
+  .pc-viewport{width:100%; height:100%; overflow:hidden; position:relative;}
+  .pc-track{display:flex; width:300%; height:100%; transform:translateX(-33.3333%);}
+  .pc-frame{width:33.3333%; height:100%; flex-shrink:0;}
+  .pc-frame img{width:100%; height:100%; object-fit:cover; display:block;}
+  .pc-slide.pc-center{width:400px; height:300px; z-index:3; box-shadow:0 16px 36px rgba(27,36,48,0.28);}
+  .pc-slide.pc-side{width:230px; height:172px; opacity:0.55; filter:brightness(0.82); cursor:pointer; z-index:1;}
+  .pc-slide.pc-side:hover{opacity:0.8;}
+  .pc-arrow{
+    position:absolute; top:50%; transform:translateY(-50%);
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:18px; color:var(--accent-2);
+    box-shadow:0 3px 10px rgba(27,36,48,0.14); z-index:5; transition:background 0.15s ease;
+  }
+  .pc-arrow:hover{background:var(--accent-soft);}
+  .pc-arrow.pc-prev{left:0;}
+  .pc-arrow.pc-next{right:0;}
+  .pc-dots{display:flex; justify-content:center; gap:7px; margin-top:20px;}
+  .pc-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--line); cursor:pointer;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .pc-dot.active{background:var(--accent); transform:scale(1.35);}
+  @media(max-width:760px){
+    .photo-carousel{height:230px; gap:10px;}
+    .pc-slide.pc-center{width:280px; height:210px;}
+    .pc-slide.pc-side{width:150px; height:112px;}
+  }
+  @media(max-width:480px){
+    .pc-slide.pc-side{display:none;}
+    .pc-arrow{width:32px; height:32px; font-size:15px;}
+  }
+
+  /* COVERFLOW V2 — persistent items that truly scale/slide as they move (used by
+     the main "Along the Way" gallery and the "Latest Accounts" logo carousel) */
+  .pc-cvf, .sw-cvf{flex:1; height:100%; position:relative;}
+  .pc-cvf-item{
+    position:absolute; top:50%; left:50%;
+    width:400px; height:300px; margin-left:-200px; margin-top:-150px;
+    border-radius:var(--radius); overflow:hidden; background:#000;
+    border:1px solid var(--line);
+    box-shadow:0 16px 36px rgba(27,36,48,0.28);
+    transition:transform 0.55s cubic-bezier(.4,.1,.2,1), opacity 0.55s ease, filter 0.55s ease, box-shadow 0.55s ease;
+    cursor:pointer;
+  }
+  .pc-cvf-item img{width:100%; height:100%; object-fit:cover; display:block;}
+  @media(max-width:760px){
+    .pc-cvf-item{width:280px; height:210px; margin-left:-140px; margin-top:-105px;}
+  }
+  .sw-cvf-item{
+    position:absolute; top:50%; left:50%;
+    width:320px; height:180px; margin-left:-160px; margin-top:-90px;
+    display:flex; align-items:center; justify-content:center;
+    border-radius:10px; overflow:hidden;
+    transition:transform 0.55s cubic-bezier(.4,.1,.2,1), opacity 0.55s ease, filter 0.55s ease;
+    cursor:pointer; user-select:none;
+  }
+  .sw-cvf-item img{
+    max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain;
+    pointer-events:none; user-select:none; -webkit-user-drag:none;
+  }
+  @media(max-width:640px){
+    .sw-cvf-item{width:220px; height:125px; margin-left:-110px; margin-top:-62.5px;}
+  }
+
+  /* SKILLS */
+  .skills-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:18px;}
+  .skill-card{
+    background:var(--card); border:1px solid var(--line); border-top:3px solid var(--accent); border-radius:var(--radius);
+    padding:20px 22px;
+    box-shadow:0 18px 40px rgba(27,36,48,0.14), 0 4px 12px rgba(27,36,48,0.06);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .skill-card:hover{
+    transform:translateY(-4px) scale(1.02);
+    box-shadow:0 24px 48px rgba(27,36,48,0.18), 0 6px 16px rgba(27,36,48,0.08);
+  }
+  .skills-grid .skill-card:nth-child(1){border-top-color:#5d88bb;}
+  .skills-grid .skill-card:nth-child(2){border-top-color:#4f9e8f;}
+  .skills-grid .skill-card:nth-child(3){border-top-color:#c1954f;}
+  .skills-grid .skill-card:nth-child(4){border-top-color:#8f6bb3;}
+  .skills-grid .skill-card:nth-child(5){border-top-color:#c1616f;}
+  .skills-grid .skill-card:nth-child(6){border-top-color:#4f8fc1;}
+  .skill-card h4{font-size:14.5px; color:var(--navy); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:10px;}
+  .skill-card ul{margin:0; padding-left:18px; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13.5px; color:#3c434c;}
+  .skill-card li{margin-bottom:5px;}
+  @media(max-width:760px){ .skills-grid{grid-template-columns:1fr;} }
+
+  .tools-row{margin-top:34px; font-family:"Inter","Helvetica Neue",Arial,sans-serif;}
+  .tools-row .label{font-size:13px; text-transform:uppercase; letter-spacing:0.12em; color:var(--muted); margin-bottom:16px;}
+  .tool-tags{display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:32px;}
+  .tool-tag{
+    background:none; color:var(--accent-2); font-size:17px; font-weight:700;
+    padding:0; display:flex; align-items:center; justify-content:center;
+    min-height:36px;
+  }
+  .tool-tag img{ height:32px; width:auto; max-width:160px; object-fit:contain; }
+  @media(max-width:640px){ .tool-tags{gap:22px;} .tool-tag{font-size:14px; min-height:28px;} .tool-tag img{height:24px;} }
+
+  /* PROJECTS */
+  #projects{background:#d6d6d6; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .project-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    margin-bottom:18px; overflow:hidden;
+  }
+  .project-card summary{
+    list-style:none; cursor:pointer; padding:22px 26px;
+    display:flex; align-items:flex-start; justify-content:space-between; gap:18px;
+  }
+  .project-card summary::-webkit-details-marker{display:none;}
+  .p-head-text{flex:1;}
+  .p-tagline{font-family:"Inter","Helvetica Neue",Arial,sans-serif; text-transform:uppercase; letter-spacing:0.08em; font-size:11.5px; color:var(--accent-2); font-weight:700; margin-bottom:6px;}
+  .p-title{font-size:20px; color:var(--navy); font-weight:700; font-family:"Inter","Helvetica Neue",Arial,sans-serif;}
+  .p-context{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13px; color:var(--muted); margin-top:6px;}
+  .p-toggle{
+    flex-shrink:0; width:30px; height:30px; border-radius:50%;
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-size:16px; color:var(--accent-2); font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    transition:transform 0.2s ease;
+  }
+  .p-deck{
+    flex-shrink:0; display:flex; flex-direction:column; align-items:center; gap:4px;
+    text-decoration:none; width:84px;
+  }
+  .p-deck img{
+    width:84px; height:auto; display:block; border-radius:7px; border:1px solid var(--line);
+    box-shadow:0 2px 6px rgba(27,36,48,0.08); transition:transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .p-deck:hover img{transform:translateY(-2px); box-shadow:0 5px 12px rgba(27,36,48,0.14);}
+  .p-deck .p-deck-label{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:10.5px; font-weight:600;
+    color:var(--accent-2); text-transform:uppercase; letter-spacing:0.04em;
+  }
+  @media(max-width:640px){ .p-deck{width:52px;} .p-deck img{width:52px;} .p-deck .p-deck-label{display:none;} }
+  .p-hero-img{
+    max-width:435px; max-height:328px; width:100%; height:auto; object-fit:contain;
+    display:block; border-radius:10px; border:1px solid var(--line);
+    box-shadow:0 3px 10px rgba(27,36,48,0.10); margin-top:20px;
+  }
+  details[open] .p-toggle{transform:rotate(45deg);}
+  .project-body{padding:0 26px 26px 26px; border-top:1px solid var(--line); margin-top:0;}
+  .project-body .lead{padding-top:20px; font-size:15.5px; color:#333;}
+  .highlight-list{margin:16px 0; padding-left:0; list-style:none;}
+  .highlight-list li{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:14px; color:#3c434c;
+    padding-left:20px; position:relative; margin-bottom:9px;
+  }
+  .highlight-list li::before{
+    content:"—"; position:absolute; left:0; color:var(--accent);
+  }
+  .highlight-list li.hl-image-row{
+    display:flex; align-items:flex-start; gap:18px; padding-left:0; margin-bottom:16px;
+  }
+  .highlight-list li.hl-image-row::before{ content:none; }
+  .highlight-list li.hl-image-row img{
+    flex-shrink:0; width:150px; border-radius:6px; border:1px solid var(--line);
+    box-shadow:0 3px 10px rgba(27,36,48,0.15);
+  }
+  .highlight-list li.hl-image-row .hl-text-col{ flex:1; min-width:0; }
+  .highlight-list li.hl-image-row .hl-text-col p{
+    margin:0 0 9px 0; padding-left:20px; position:relative;
+  }
+  .highlight-list li.hl-image-row .hl-text-col p:last-child{ margin-bottom:0; }
+  .highlight-list li.hl-image-row .hl-text-col p::before{
+    content:"—"; position:absolute; left:0; color:var(--accent);
+  }
+  .tag-row{display:flex; flex-wrap:wrap; gap:7px; margin-top:14px;}
+  .tag{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:11.5px; font-weight:600;
+    background:#eef1f4; color:#42505f; padding:4px 10px; border-radius:6px;
+  }
+
+  /* PROJECT GALLERY */
+  .gallery-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px;}
+  @media(max-width:900px){ .gallery-grid{grid-template-columns:repeat(2,1fr);} }
+  @media(max-width:560px){ .gallery-grid{grid-template-columns:1fr;} }
+  .gallery-tile{
+    position:relative; border-radius:var(--radius); overflow:hidden; cursor:pointer;
+    aspect-ratio:16/9; border:1px solid var(--line); background:#000;
+    box-shadow:0 3px 10px rgba(27,36,48,0.08);
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .gallery-tile:hover{ transform:translateY(-4px); box-shadow:0 10px 22px rgba(27,36,48,0.18); }
+  .gallery-tile img{ width:100%; height:100%; object-fit:cover; display:block; }
+  .gallery-tile-title{
+    position:absolute; left:0; right:0; bottom:0; z-index:2; pointer-events:none;
+    padding:46px 16px 18px 16px;
+    background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+    color:#fff; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:18px;
+    line-height:1.35; text-align:center; letter-spacing:0.01em;
+  }
+  @media(max-width:560px){
+    .gallery-tile-title{font-size:15px; padding:34px 12px 14px 12px;}
+  }
+
+  /* MODAL / FLIP CARD */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(18,22,29,0.74); z-index:520;
+    display:flex; align-items:center; justify-content:center; padding:26px;
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease;
+  }
+  .modal-overlay.active{ opacity:1; pointer-events:auto; }
+  .modal-card-wrap{ width:100%; max-width:760px; perspective:2000px; }
+  .flip-inner{
+    position:relative; width:100%; transform-style:preserve-3d;
+    transform:scale(0.8); opacity:0;
+    transition:transform 0.5s cubic-bezier(.4,.15,.2,1), opacity 0.35s ease;
+  }
+  .modal-overlay.active .flip-inner{ transform:scale(1) rotateY(0deg); opacity:1; }
+  .modal-overlay.active.flipped .flip-inner{ transform:scale(1) rotateY(180deg); opacity:1; }
+  .flip-front, .flip-back{
+    backface-visibility:hidden; border-radius:var(--radius); overflow:hidden;
+    background:var(--card); box-shadow:0 25px 60px rgba(0,0,0,0.4);
+  }
+  .flip-front{ line-height:0; }
+  .flip-front img{ width:100%; display:block; }
+  .flip-back{
+    position:absolute; inset:0; transform:rotateY(180deg);
+    max-height:min(88vh, 720px); overflow-y:auto;
+    padding:26px 28px 28px 28px;
+  }
+  .modal-head{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px;
+    padding-bottom:16px; border-bottom:1px solid var(--line); margin-bottom:18px;
+  }
+  .modal-head-actions{ display:flex; align-items:flex-start; gap:10px; flex-shrink:0; }
+  .modal-close{
+    width:30px; height:30px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    font-size:16px; line-height:1; color:var(--muted); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  }
+  .modal-close:hover{ color:var(--accent); border-color:var(--accent); }
+  .modal-body p.lead{ font-size:15.5px; color:#333; }
+  body.modal-open{ overflow:hidden; }
+
+  /* EDUCATION */
+  .edu-item{
+    display:grid; grid-template-columns:64px 1fr; gap:22px; align-items:start;
+    padding:22px 0; border-top:1px solid var(--line);
+  }
+  .edu-item:first-of-type{border-top:none;}
+  .edu-logo{width:64px; height:64px; object-fit:contain; margin-top:2px; justify-self:start;}
+  .edu-logo--sm{width:52px; height:52px; justify-self:center; margin-top:8px;}
+  .edu-date{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12px; color:var(--accent-2);
+    font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px;
+  }
+  .edu-name{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:17px; color:var(--navy); font-weight:700;}
+  .edu-detail{font-size:14.5px; color:#444; margin-top:5px;}
+  @media(max-width:640px){ .edu-item{grid-template-columns:44px 1fr; gap:14px;} .edu-logo{width:44px; height:44px;} .edu-logo--sm{width:36px; height:36px;} }
+
+  /* CERTIFICATIONS */
+  #certifications{background:var(--card); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .cert-item{
+    display:grid; grid-template-columns:48px 1fr; gap:18px; align-items:start;
+    padding:20px 0; border-top:1px solid var(--line);
+  }
+  .cert-item:first-of-type{border-top:none;}
+  .cert-logo{
+    width:48px; height:48px; border-radius:10px; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:14px; color:#fff;
+    letter-spacing:0.01em;
+  }
+  .cert-name{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:16px; color:var(--navy); font-weight:700;}
+  a.cert-name{text-decoration:none; display:block;}
+  a.cert-name:hover{text-decoration:underline;}
+  .cert-issuer{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13.5px; color:#3c434c; margin-top:3px;}
+  .cert-meta{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12px; color:var(--muted); margin-top:6px;}
+  .cert-skills{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12.5px; color:#3c434c; margin-top:8px;}
+  .cert-skills strong{color:var(--navy);}
+  @media(max-width:640px){ .cert-item{grid-template-columns:38px 1fr; gap:12px;} .cert-logo{width:38px; height:38px; font-size:11px;} }
+
+  /* SOCIAL MEDIA WORK */
+  #social-work{background:#ffffff; border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .sw-item{padding:38px 0; border-top:1px solid var(--line);}
+  .sw-item:first-of-type{border-top:none; padding-top:0;}
+
+  /* SOCIAL WORK — logo coverflow */
+  .sw-coverflow{
+    position:relative; display:flex; align-items:center; justify-content:center;
+    gap:22px; height:215px; margin-top:4px; touch-action:pan-y;
+  }
+  .sw-cf-slide{
+    border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    transition:width 0.35s ease, height 0.35s ease, opacity 0.35s ease, filter 0.35s ease;
+    user-select:none; overflow:hidden;
+  }
+  .sw-cf-viewport{width:100%; height:100%; overflow:hidden; position:relative;}
+  .sw-cf-track{display:flex; width:300%; height:100%; transform:translateX(-33.3333%);}
+  .sw-cf-frame{
+    width:33.3333%; height:100%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .sw-cf-frame img{
+    max-width:100%; max-height:100%; width:auto; height:auto; object-fit:contain;
+    pointer-events:none; user-select:none; -webkit-user-drag:none;
+  }
+  .sw-cf-slide.sw-cf-center{width:320px; height:180px; cursor:pointer;}
+  .sw-cf-slide.sw-cf-side{width:190px; height:120px; opacity:0.38; filter:grayscale(0.15); cursor:pointer;}
+  .sw-cf-slide.sw-cf-side:hover{opacity:0.6;}
+  .sw-cf-arrow{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:18px; color:var(--accent-2);
+    box-shadow:0 3px 10px rgba(27,36,48,0.14); transition:background 0.15s ease;
+  }
+  .sw-cf-arrow:hover{background:var(--accent-soft);}
+  .sw-cf-hint{
+    text-align:center; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12.5px;
+    color:var(--muted); margin-top:10px; margin-bottom:8px;
+  }
+  .sw-detail{padding:0;}
+  .sw-soon{
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:50px 20px; gap:18px;
+  }
+  .sw-soon img{max-width:220px; width:100%; height:auto;}
+  .sw-soon p{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:16px; color:var(--muted);
+    font-weight:600; margin:0;
+  }
+  @media(max-width:640px){
+    .sw-coverflow{height:150px; gap:10px;}
+    .sw-cf-slide.sw-cf-center{width:220px; height:125px;}
+    .sw-cf-slide.sw-cf-side{width:110px; height:78px;}
+  }
+
+  /* SOCIAL WORK — detail modal (opens on top of the coverflow) */
+  .sw-modal-overlay{
+    position:fixed; inset:0; background:rgba(18,22,29,0.74); z-index:525;
+    display:flex; align-items:flex-start; justify-content:center;
+    padding:50px 20px; overflow-y:auto;
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease;
+  }
+  .sw-modal-overlay.active{opacity:1; pointer-events:auto;}
+  .sw-modal-card{
+    width:100%; max-width:900px; margin:auto 0; background:var(--card); border-radius:var(--radius);
+    box-shadow:0 25px 60px rgba(0,0,0,0.4);
+    transform:scale(0.92); opacity:0;
+    transition:transform 0.35s cubic-bezier(.4,.15,.2,1), opacity 0.3s ease;
+  }
+  .sw-modal-overlay.active .sw-modal-card{transform:scale(1); opacity:1;}
+  .sw-modal-head{display:flex; justify-content:flex-end; padding:16px 16px 0 16px;}
+  .sw-modal-close{
+    width:32px; height:32px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    font-size:16px; line-height:1; color:var(--muted); cursor:pointer;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  }
+  .sw-modal-close:hover{color:var(--accent); border-color:var(--accent);}
+  .sw-modal-body{padding:6px 32px 36px 32px;}
+  body.sw-modal-open{overflow:hidden;}
+  @media(max-width:640px){
+    .sw-modal-overlay{padding:0;}
+    .sw-modal-card{max-width:none; min-height:100%; border-radius:0;}
+    .sw-modal-body{padding:6px 20px 32px 20px;}
+  }
+  .sw-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:20px;
+    flex-wrap:wrap; margin-bottom:18px;
+  }
+  .sw-name{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:21px; color:var(--navy); font-weight:700;}
+  .sw-role{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13px; color:var(--muted); margin-top:4px;}
+  .sw-stat{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:14px; color:var(--accent-2); font-weight:700; text-align:right;}
+  .sw-stat .sw-stat-sub{display:block; font-weight:400; color:var(--muted); font-size:11.5px; margin-top:2px;}
+  .sw-body{display:grid; grid-template-columns:1.15fr 1fr; gap:32px; align-items:start;}
+  .sw-body p.lead{font-size:15px;}
+  .sw-shots{display:flex; flex-wrap:wrap; gap:12px;}
+  .sw-shots img{
+    width:150px; border-radius:10px; border:1px solid var(--line); display:block;
+    box-shadow:0 3px 10px rgba(27,36,48,0.10);
+  }
+  .sw-shots img.sw-shot-tall{width:150px; height:auto;}
+  @media(max-width:760px){ .sw-body{grid-template-columns:1fr;} .sw-shots{margin-top:6px;} }
+
+  /* SOCIAL MEDIA WORK — feature layout (Biokoa) */
+  .sw-feature-top{
+    display:grid; grid-template-columns:140px 300px 1fr; gap:26px; align-items:start;
+    margin-bottom:28px;
+  }
+  .sw-feature-visual img{
+    width:100%; height:100%; min-height:440px; object-fit:cover; display:block;
+    border-radius:var(--radius); box-shadow:0 8px 22px rgba(27,36,48,0.16);
+  }
+  .sw-feature-heading{margin-bottom:16px;}
+  .sw-feature-brand{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:34px; font-weight:700;
+    color:var(--accent-2); letter-spacing:0.01em; line-height:1;
+  }
+  .sw-feature-tagline{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15px; font-weight:700; color:var(--navy);
+    text-transform:uppercase; letter-spacing:0.14em; margin-top:6px;
+  }
+  .sw-ig-mock{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+    box-shadow:0 8px 20px rgba(27,36,48,0.14);
+  }
+  .sw-ig-head{display:flex; align-items:center; gap:8px; padding:10px 12px;}
+  .sw-ig-avatar{
+    width:24px; height:24px; border-radius:50%; background:var(--accent); color:#fff;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:11px;
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .sw-ig-username{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:12.5px; color:var(--ink);}
+  .sw-ig-photo{width:100%; aspect-ratio:1/1; object-fit:cover; display:block;}
+  .sw-ig-actions{padding:9px 12px 0 12px; font-size:15px; color:var(--ink); letter-spacing:2px;}
+  .sw-ig-likes{padding:6px 12px 0 12px; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:12px; color:var(--ink);}
+  .sw-ig-caption{padding:4px 12px 0 12px; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12px; color:#3c434c; line-height:1.45;}
+  .sw-ig-caption strong{color:var(--navy);}
+  .sw-ig-date{padding:6px 12px 12px 12px; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:10.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;}
+  .sw-collage{display:grid; grid-template-columns:1fr 1fr; grid-auto-rows:135px; gap:10px;}
+  .sw-collage img{width:100%; height:100%; object-fit:cover; display:block; border-radius:10px; border:1px solid var(--line); box-shadow:0 3px 10px rgba(27,36,48,0.08);}
+  .sw-collage img:first-child{grid-row:span 2;}
+  .sw-feature-copy{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15.5px; color:#333; line-height:1.7;
+    text-align:center; max-width:760px; margin:0 auto;
+  }
+  .sw-feature-copy strong{color:var(--accent-2);}
+  @media(max-width:900px){
+    .sw-feature-top{grid-template-columns:1fr 1fr;}
+    .sw-feature-visual{display:none;}
+  }
+  @media(max-width:640px){
+    .sw-feature-top{grid-template-columns:1fr;}
+    .sw-collage{grid-auto-rows:150px;}
+  }
+
+  /* BIOKOA — fixed 4-column gallery layout */
+  .bk-framed{
+    border-radius:var(--radius); display:block; box-shadow:0 4px 10px rgba(27,36,48,0.14);
+    width:100%; height:auto;
+  }
+  .bk-header{margin-bottom:22px;}
+  .bk-brand{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:42px; font-weight:700;
+    color:#5c4a3f; line-height:1; letter-spacing:-0.01em;
+  }
+  .bk-tagline{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15px; color:#5c4a3f;
+    margin-top:4px;
+  }
+  .bk-gallery{
+    display:grid; grid-template-columns:0.8fr 0.9fr 0.9fr 0.9fr; grid-template-rows:auto auto;
+    gap:18px; align-items:start; margin-bottom:22px;
+  }
+  .bk-g-profile{grid-column:1; grid-row:1 / 3; height:100%; object-fit:cover;}
+  .bk-g-cactus{grid-column:2; grid-row:1;}
+  .bk-g-fruits{grid-column:2; grid-row:2;}
+  .bk-g-hatmug{grid-column:3; grid-row:1; align-self:end;}
+  .bk-g-walking{grid-column:4; grid-row:1;}
+  .bk-g-post{grid-column:3 / 5; grid-row:2;}
+  .bk-copy{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15px; color:#333; line-height:1.7;
+    text-align:left; margin:0;
+  }
+  .bk-copy strong{color:#5c4a3f;}
+  @media(max-width:900px){
+    .bk-gallery{grid-template-columns:1fr 1fr;}
+    .bk-g-profile{grid-column:1 / -1; grid-row:1; height:auto;}
+    .bk-g-cactus{grid-column:1; grid-row:2;}
+    .bk-g-fruits{grid-column:1; grid-row:3;}
+    .bk-g-hatmug{grid-column:2; grid-row:2; align-self:start;}
+    .bk-g-walking{grid-column:2; grid-row:3;}
+    .bk-g-post{grid-column:1 / -1; grid-row:4;}
+  }
+  @media(max-width:520px){
+    .bk-gallery{grid-template-columns:1fr;}
+    .bk-g-cactus, .bk-g-fruits, .bk-g-hatmug, .bk-g-walking, .bk-g-post{grid-column:1;}
+    .bk-g-cactus{grid-row:2;} .bk-g-fruits{grid-row:3;} .bk-g-hatmug{grid-row:4; align-self:start;}
+    .bk-g-walking{grid-row:5;} .bk-g-post{grid-row:6;}
+  }
+
+  /* CORONADO — Canva-style layout (Alex's preferred design style) */
+  .cw-framed{border-radius:var(--radius); display:block;}
+  .cw-brand{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:42px; font-weight:700;
+    color:#5c4a3f; line-height:1; letter-spacing:-0.01em;
+  }
+  .cw-tagline{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:16px; color:#333;
+    margin-top:10px; margin-bottom:22px;
+  }
+  .cw-copy{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15px; color:#333; line-height:1.7;
+    text-align:left; max-width:900px; margin:0 0 30px 0;
+  }
+  .cw-copy strong{color:#5c4a3f;}
+  .metric{font-weight:700; color:var(--accent-2); font-size:1.08em;}
+  .cw-stats{
+    display:grid; grid-template-columns:1fr 1fr; column-gap:40px; row-gap:26px;
+    margin:34px 0; text-align:center;
+  }
+  .cw-stat-wide{grid-column:1 / -1;}
+  .cw-stat-num{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:32px; font-weight:700;
+    color:var(--accent-2); line-height:1.25;
+  }
+  .cw-stat-label{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:19px; color:#9299a3; line-height:1.3;
+  }
+  @media(max-width:600px){
+    .cw-stats{grid-template-columns:1fr;}
+  }
+  .cw-row-promos{justify-content:center;}
+  .cw-row-promos img{width:100%; max-width:320px; height:auto;}
+  .cw-section-title{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:15px; font-weight:700; color:#5c4a3f;
+    text-align:center; margin:0 0 16px 0;
+  }
+  .cw-section-title.cw-section-title-right{text-align:right;}
+  .cw-section-title.cw-section-title-left{text-align:left;}
+  .cw-case-title-lg{font-size:30px; line-height:1.15;}
+  .cw-survey-link{
+    display:block; margin-top:12px; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13px;
+    font-weight:600; color:var(--accent-2); text-decoration:none; border-bottom:1px solid var(--accent-2);
+    padding-bottom:1px; width:max-content;
+  }
+  .cw-row{display:flex; gap:20px; margin-bottom:24px; flex-wrap:wrap; align-items:flex-start;}
+  .cw-row-menu{align-items:flex-start; justify-content:center;}
+  .cw-row-menu img{width:auto; height:340px; max-width:100%;}
+  .cw-menu-col{display:flex; flex-direction:column; align-items:center; gap:14px;}
+  .cw-menu-col-pair{flex:1 1 auto;}
+  .cw-menu-pair{display:flex; gap:20px; align-items:flex-start; justify-content:center;}
+  .cw-row-email .cw-col{flex:1 1 320px;}
+  .cw-mini-carousel{position:relative; width:100%; aspect-ratio:1874/1075; border-radius:var(--radius); overflow:hidden; background:#fff;}
+  .cw-mini-carousel img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease-in-out; border-radius:var(--radius);}
+  .cw-mini-carousel img.active{opacity:1;}
+  .cw-caption{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13.5px; color:#333; font-weight:700;
+    text-align:center; margin-top:10px;
+  }
+  .cw-caption-lg{margin-top:0;}
+  .cw-row-email .cw-mini-carousel .cw-caption{
+    position:absolute; left:0; right:0; bottom:0; z-index:3; margin-top:0;
+    padding:26px 12px 14px 12px;
+    background:linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0) 100%);
+    color:#fff; pointer-events:none;
+  }
+  .cw-row-web{flex-direction:column; align-items:center; gap:6px;}
+  .cw-web-img{width:100%; max-width:640px; height:auto;}
+  .cw-caption-side{text-align:center; margin-top:0;}
+  .cw-photo-credit{
+    width:100%; max-width:640px; font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:11px;
+    color:#aaa; text-align:right; margin-top:2px;
+  }
+  .pt-row{display:flex; gap:22px; margin-top:8px; flex-wrap:wrap; justify-content:center;}
+  .pt-col{flex:1 1 240px; max-width:280px; text-decoration:none; display:block;}
+  .pt-col img{width:100%; height:auto;}
+  .pt-col .cw-caption{color:var(--accent-2);}
+  .pt-col:hover img{opacity:0.9;}
+  .cw-row-ads .cw-col{flex:1 1 220px; max-width:260px;}
+  .cw-row-ads .cw-col img.cw-framed{
+    width:100%; aspect-ratio:1874/1075; object-fit:cover; border-radius:var(--radius); display:block;
+  }
+  .cw-row-ads .cw-mini-carousel{aspect-ratio:1/1;}
+  .cw-mc-arrow{
+    position:absolute; top:50%; transform:translateY(-50%); z-index:5;
+    width:24px; height:24px; border-radius:50%; border:none;
+    background:rgba(0,0,0,0.28); color:#fff; opacity:0.7;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:14px; line-height:1; cursor:pointer;
+    transition:opacity 0.15s ease, background 0.15s ease;
+  }
+  .cw-mc-arrow:hover{opacity:1; background:rgba(0,0,0,0.45);}
+  .cw-mc-arrow.cw-mc-next{right:8px;}
+  .cw-mc-arrow.cw-mc-prev{left:8px;}
+  .cw-mc-arrow[hidden]{display:none;}
+  .cw-placeholder{
+    border:1.5px dashed var(--line); background:var(--card); display:flex;
+    align-items:center; justify-content:center;
+  }
+  .cw-placeholder-label{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12.5px; color:var(--muted);
+    text-align:center; line-height:1.5;
+  }
+  @media(max-width:760px){
+    .cw-row-menu{flex-direction:column; align-items:center;}
+    .cw-row-menu img{height:auto; width:100%; max-width:340px;}
+    .cw-menu-pair{flex-wrap:wrap; justify-content:center;}
+    .cw-row-web{flex-direction:column;}
+    .cw-caption-side{text-align:center;}
+  }
+
+  /* FOOTER */
+  footer{
+    background:var(--navy); color:#d6d6d6; padding:52px 0 34px 0;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+  }
+  footer h2{color:#fff; font-size:17px;}
+  footer p{color:#c7cad1; max-width:900px; font-size:14.5px; margin-top:5px;}
+  .footer-bottom{
+    margin-top:16px; padding-top:18px; border-top:1px solid rgba(255,255,255,0.1);
+    display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  }
+  .footer-brand{display:flex; align-items:center; gap:16px;}
+  .footer-copyright{font-size:12px; color:#8a92a0;}
+  .footer-logo{height:20px; width:auto; display:block;}
+  .footer-li{height:22px; width:22px; display:block;}
+  @media(max-width:600px){
+    .footer-bottom{justify-content:flex-start;}
+  }
+
+  /* LET'S CHAT — contact form */
+  #letschat{background:var(--navy);}
+  .lc-box{max-width:640px; margin:0 auto;}
+  .lc-box h2{font-size:28px; color:#fff;}
+  .lc-sub{font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:14.5px; color:#c7cad1; margin-top:10px; margin-bottom:26px; max-width:560px;}
+  .lc-row{display:flex; gap:20px; margin-bottom:18px;}
+  .lc-field{flex:1; display:flex; flex-direction:column; margin-bottom:18px;}
+  .lc-row .lc-field{margin-bottom:0;}
+  .lc-field label{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13px; color:#fff; font-weight:600;
+    margin-bottom:8px;
+  }
+  .lc-field input, .lc-field textarea{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:14px; color:var(--ink);
+    background:var(--paper); border:1px solid var(--line); border-radius:8px; padding:12px 14px;
+    outline:none;
+  }
+  .lc-field input:focus, .lc-field textarea:focus{border-color:var(--accent);}
+  .lc-field textarea{min-height:150px; resize:vertical; font-family:"Inter","Helvetica Neue",Arial,sans-serif;}
+  .lc-note{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:12.5px; color:#9aa2ad; margin-bottom:20px;
+  }
+  .lc-submit{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:13px; letter-spacing:0.04em;
+    color:#fff; background:var(--accent-2); border:none; border-radius:8px; padding:14px 26px; cursor:pointer;
+  }
+  .lc-submit:hover{background:var(--accent);}
+  .lc-submit:disabled{opacity:0.6; cursor:default;}
+  .lc-status{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:13.5px; margin-top:14px;
+  }
+  .lc-status-ok{color:#2f6b3f;}
+  .lc-status-err{color:#a13f3f;}
+  @media(max-width:640px){ .lc-row{flex-direction:column; gap:18px;} }
+
+  /* NAV — PhGalleryZ launcher */
+  .nav-launch{color:var(--muted);}
+  .nav-launch:hover{color:var(--accent);}
+
+  /* PHGALLERYZ — standalone window */
+  body.pz-open{overflow:hidden;}
+  #phgalleryz{
+    display:none; position:fixed; inset:0; z-index:500; background:var(--paper);
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+  }
+  #phgalleryz.pz-visible{display:block;}
+
+  /* PROJECTS WINDOW — standalone window (Project Gallery + More marketing work) */
+  #projects-window{
+    display:none; position:fixed; inset:0; z-index:500; background:var(--paper);
+    overflow-y:auto; -webkit-overflow-scrolling:touch;
+  }
+  #projects-window.pz-visible{display:block;}
+  .pz-nav{
+    position:sticky; top:0; z-index:10;
+    background:rgba(255,255,255,0.92); backdrop-filter:blur(6px);
+    color:var(--ink); font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    border-bottom:1px solid var(--line);
+  }
+  .pz-nav .container{display:flex; align-items:center; justify-content:space-between; padding:14px 28px;}
+  .pz-nav-dark{
+    background:rgba(16,35,54,0.96); backdrop-filter:blur(6px);
+    color:#fff; border-bottom:none;
+  }
+  .pz-nav-brand{display:flex; align-items:center; gap:10px;}
+  .pz-nav-brand img{height:42px; width:auto; opacity:0.92;}
+  .pz-close{
+    color:#d6d6d6; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:0.04em;
+    border:1px solid rgba(255,255,255,0.3); border-radius:999px; padding:7px 16px;
+  }
+  .pz-close:hover{color:#fff; border-color:#fff;}
+  .pz-hero{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-2) 65%, #2f5478 100%);
+    color:#d6d6d6; padding:64px 0 56px 0; text-align:center;
+  }
+  .pz-hero img.pz-mark{height:134px; width:134px; margin-bottom:8px; opacity:0.95;}
+  .pz-hero img.pz-hero-wordmark{display:block; margin:0 auto 22px auto; height:38px; width:auto; opacity:0.95;}
+  .pz-what{
+    position:relative; display:inline-block;
+    font-family:"Caveat","Inter","Helvetica Neue",Arial,sans-serif; font-weight:700;
+    font-size:1.35em; line-height:1; padding:0 0.06em; color:#fff;
+  }
+  .pz-what-underline{
+    position:absolute; left:2%; right:2%; bottom:-0.22em; width:96%; height:0.5em;
+    color:#fff; opacity:0.9;
+  }
+  .pz-hero .eyebrow{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; text-transform:uppercase; letter-spacing:0.18em;
+    font-size:12px; color:var(--accent-soft); opacity:0.9; margin-bottom:14px; font-weight:600;
+  }
+  .pz-hero h1{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    font-size:40px; line-height:1.2; color:#fff; font-weight:400; letter-spacing:-0.02em;
+    max-width:760px; margin:0 auto;
+  }
+  #phgalleryz .pz-hero h1{font-size:24px;}
+  .pz-hero .lede{
+    max-width:640px; margin:20px auto 0 auto; font-size:16px; color:#dfe1e6; font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    text-align:center;
+  }
+  #projects-window .pz-hero h1{font-weight:700;}
+  .pz-intro{padding:40px 0 8px 0; background:var(--paper);}
+  .pz-intro-grid{display:grid; grid-template-columns:1fr 1.4fr; gap:44px; align-items:center;}
+  .pz-intro p{
+    max-width:100%; margin:0; font-size:16px; line-height:1.65; color:#333;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; text-align:left;
+  }
+  .pz-intro-carousel-col{display:flex; flex-direction:column; align-items:center;}
+  .cc-carousel-compact.photo-carousel{height:280px; gap:0; margin-top:0;}
+  .cc-carousel-compact .pc-slide.pc-center{width:100%; max-width:380px; height:280px;}
+  .cc-carousel-compact .pc-slide.pc-side{display:none;}
+  .cc-carousel-compact .pc-arrow{width:32px; height:32px; font-size:15px;}
+  .cc-carousel-compact .cc-title{font-size:16px; padding:24px 12px 14px 12px;}
+  @media(max-width:900px){
+    .pz-intro-grid{grid-template-columns:1fr; gap:26px;}
+    .pz-intro-carousel-col{margin-top:6px;}
+  }
+  .pz-approach{padding:52px 0; background:var(--card); border-bottom:1px solid var(--line);}
+  .pz-approach-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:8px;}
+  .pz-step{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:22px 20px;
+    box-shadow:0 18px 40px rgba(27,36,48,0.14), 0 4px 12px rgba(27,36,48,0.06);
+  }
+  .pz-step .pz-step-num{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-weight:700; font-size:13px; color:var(--accent-2);
+    letter-spacing:0.08em; margin-bottom:8px;
+  }
+  .pz-step h3{font-size:17px; color:var(--navy); margin-bottom:8px;}
+  .pz-step p{font-size:14.5px; color:#333; margin:0; font-family:"Inter","Helvetica Neue",Arial,sans-serif;}
+
+  /* PHGALLERYZ — Coronado client case + sliding gallery */
+  .pz-client{padding:52px 0; border-bottom:1px solid var(--line);}
+  .cw-poster{
+    border-radius:var(--radius); margin-top:26px;
+    box-shadow:0 18px 40px rgba(16,35,54,0.28); cursor:pointer;
+  }
+  .cw-poster-hero-img{width:100%; height:auto; display:block; border-radius:var(--radius);}
+  .cw-poster-modal-overlay{
+    position:fixed; inset:0; background:rgba(18,22,29,0.74); z-index:526;
+    display:flex; align-items:center; justify-content:center; padding:26px;
+    opacity:0; pointer-events:none; transition:opacity 0.25s ease;
+  }
+  .cw-poster-modal-overlay.active{opacity:1; pointer-events:auto;}
+  .cw-poster-modal-wrap{width:100%; max-width:960px; perspective:2000px;}
+  .cw-poster-flip-inner{
+    position:relative; width:100%; transform-style:preserve-3d;
+    transform:scale(0.8); opacity:0;
+    transition:transform 0.5s cubic-bezier(.4,.15,.2,1), opacity 0.35s ease;
+  }
+  .cw-poster-modal-overlay.active .cw-poster-flip-inner{transform:scale(1) rotateY(0deg); opacity:1;}
+  .cw-poster-modal-overlay.active.flipped .cw-poster-flip-inner{transform:scale(1) rotateY(180deg); opacity:1;}
+  .cw-poster-flip-front, .cw-poster-flip-back{
+    backface-visibility:hidden; border-radius:var(--radius); overflow:hidden;
+    box-shadow:0 25px 60px rgba(0,0,0,0.4);
+  }
+  .cw-poster-flip-front{line-height:0; background:#000;}
+  .cw-poster-flip-front img{width:100%; display:block;}
+  .cw-poster-flip-back{
+    position:absolute; inset:0; transform:rotateY(180deg);
+    max-height:min(88vh, 760px); overflow-y:auto; background:var(--navy);
+  }
+  .cw-poster-close{
+    position:absolute; top:14px; right:14px; z-index:10;
+    width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.92);
+    color:var(--muted); font-size:16px; line-height:1; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    box-shadow:0 3px 10px rgba(0,0,0,0.3); transition:color 0.15s ease;
+  }
+  .cw-poster-close:hover{color:var(--accent);}
+  @media(max-width:640px){
+    .cw-poster-modal-overlay{padding:0;}
+    .cw-poster-modal-wrap{max-width:none;}
+    .cw-poster-flip-front, .cw-poster-flip-back{border-radius:0;}
+    .cw-poster-flip-back{max-height:100vh;}
+  }
+  .cw-poster-body{
+    background-image:linear-gradient(rgba(10,12,10,0.8), rgba(10,12,10,0.82)), url("assets/social/coronado_bar_backbar.jpg");
+    background-size:cover; background-position:center;
+    padding:34px 30px 40px 30px;
+  }
+  .cw-poster-body .pz-client-copy{color:#eef0f2;}
+  .cw-poster-body .cw-survey-link{color:#fff; border-bottom-color:rgba(255,255,255,0.6);}
+  .cw-poster-body .cw-section-title{color:#fff;}
+  .cw-poster-body .cw-caption{color:#fff;}
+  .cw-poster-body .cg-dot{background:rgba(255,255,255,0.35);}
+  @media(max-width:600px){
+    .cw-poster-body{padding:26px 18px 32px 18px;}
+  }
+  .pz-client-grid{display:grid; grid-template-columns:1fr 1.4fr; gap:40px; align-items:start; margin-bottom:20px;}
+  .pz-client-carousel-col{display:flex; flex-direction:column; align-items:center;}
+  .cw-client-video-wrap{
+    position:relative; width:100%; max-width:300px; aspect-ratio:9/16; margin-top:16px;
+    border-radius:var(--radius); overflow:hidden;
+    border:1px solid rgba(255,255,255,0.15); box-shadow:0 10px 26px rgba(0,0,0,0.35);
+  }
+  .cw-client-video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity 0.7s ease;
+  }
+  .cw-client-video-a{opacity:1;}
+  .pz-client-copy{
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:14.5px; color:#333; line-height:1.7;
+    max-width:100%; margin:0 0 30px 0; text-align:left;
+  }
+  .cg-carousel{display:flex; align-items:center; justify-content:center; gap:16px; margin-top:8px;}
+  .cg-carousel-compact.cg-carousel{margin-top:0;}
+  .cg-carousel-compact .cg-viewport{max-width:340px; height:300px;}
+  .cg-carousel-compact .cg-arrow{width:32px; height:32px; font-size:15px;}
+  .cg-carousel-compact .cg-watermark{width:34px; height:34px; right:10px; bottom:10px;}
+  @media(max-width:900px){
+    .pz-client-grid{grid-template-columns:1fr; gap:26px;}
+  }
+  .cg-arrow{
+    flex-shrink:0; width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif; font-size:18px; color:var(--accent-2);
+    box-shadow:0 3px 10px rgba(27,36,48,0.14); transition:background 0.15s ease;
+  }
+  .cg-arrow:hover{background:var(--accent-soft);}
+  .cg-viewport{
+    position:relative;
+    width:100%; max-width:460px; height:420px; overflow:hidden; border-radius:var(--radius);
+    border:1px solid var(--line); background:#000; box-shadow:0 16px 36px rgba(27,36,48,0.22);
+  }
+  .cg-track{display:flex; width:300%; height:100%; transform:translateX(-33.3333%);}
+  .cg-frame{width:33.3333%; height:100%; flex-shrink:0;}
+  .cg-frame img{width:100%; height:100%; object-fit:cover; display:block;}
+  .cg-watermark{
+    position:absolute; right:14px; bottom:14px; width:42px; height:42px;
+    opacity:0.85; filter:drop-shadow(0 1px 4px rgba(0,0,0,0.5));
+    pointer-events:none; z-index:3;
+  }
+  .cg-dots{display:flex; justify-content:center; gap:7px; margin-top:20px;}
+  .cg-dot{
+    width:7px; height:7px; border-radius:50%; background:var(--line); cursor:pointer;
+    transition:background 0.15s ease, transform 0.15s ease;
+  }
+  .cg-dot.active{background:var(--accent); transform:scale(1.35);}
+  @media(max-width:520px){
+    .cg-viewport{height:320px;}
+    .cg-arrow{width:32px; height:32px; font-size:15px;}
+  }
+
+  .pz-work{padding:56px 0;}
+  .pz-cluster{margin-bottom:48px;}
+  .pz-cluster:last-child{margin-bottom:0;}
+  .pz-cluster-head{margin-bottom:16px;}
+  .pz-cluster-head h3{font-size:19px; color:var(--navy); font-family:"Inter","Helvetica Neue",Arial,sans-serif;}
+  .pz-cluster-head p{
+    font-size:13.5px; color:var(--muted); font-family:"Inter","Helvetica Neue",Arial,sans-serif; margin-top:4px;
+  }
+  .pz-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .pz-grid img{
+    width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; border:1px solid var(--line);
+    display:block;
+  }
+  @media(max-width:760px){
+    .pz-approach-grid{grid-template-columns:1fr;}
+    .pz-grid{grid-template-columns:repeat(2,1fr);}
+    .pz-hero h1{font-size:32px;}
+    #phgalleryz .pz-hero h1{font-size:16px;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <img class="nav-logo" src="assets/brand/as_monogram.png" alt="Alejandro Sanchez">
+    <div class="nav-links">
+      <a href="#" onclick="navGoAbout(event)">About</a>
+      <a href="#" onclick="openProjectsWindow(event)">Projects</a>
+      <a href="#" class="nav-launch" onclick="openPhGalleryZ(event)">PhGalleryZ</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="eyebrow">Marketing & Brand Strategy Portfolio</div>
+    <h1>Turning research into brand strategy<br>people actually notice.</h1>
+    <div class="role">Marketing & Brand Strategist | Media Planning & Integrated Communications</div>
+    <p class="lede">
+      When I think about strategy, I think about the story behind it; one that clearly communicates
+      what a brand wants to say, stays true to its values and resonates with the people it's for.
+      With experience developing data-driven strategies, I'm passionate about turning insights into
+      meaningful campaigns that connect with people, strengthen brands and drive measurable business
+      growth.
+    </p>
+    <a href="#" class="hero-cta" onclick="openProjectsWindow(event)">Explore Portfolio</a>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">About</div>
+      <h2>Background</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>
+          I started my Business Administration degree at Pontificia Universidad Javeriana in Bogotá,
+          Colombia, then moved to Chicago and continued it at Augustana College, a liberal arts school
+          where psychology, data, and marketing gave me new ways to read a problem before trying to
+          solve it.
+        </p>
+        <p>
+          That way of thinking has taken me through very different kinds of work: a national CPG brand
+          project judged by its own marketing team, a nonprofit-backed chocolate brand, and a venture
+          I built from scratch. Along the way, I've written bilingual research reports, interviewed a
+          General Manager in the field, directed a <span class="metric">$10M+</span> media plan for a national student advertising
+          competition, and built a thesis around real internal company data. Ten of those
+          projects are collected on this site.
+        </p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-box stat-clickable" onclick="goToProjectGallery(event)">
+          <div class="num">10</div>
+          <div class="label">Featured Case Studies</div>
+        </div>
+        <div class="stat-box stat-clickable" onclick="goToProjectGallery(event)">
+          <div class="num">5</div>
+          <div class="label">Real Corporate/Nonprofit Clients</div>
+        </div>
+        <div class="stat-box stat-clickable" onclick="goToAAFProject(event)">
+          <div class="num">2</div>
+          <div class="label">AAF's NSAC Participations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery" class="tight">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Along the Way</div>
+      <h2>A few moments outside the deck</h2>
+    </div>
+    <div class="photo-carousel" id="photo-carousel" onmouseenter="stopPcAuto()" onmouseleave="startPcAuto()">
+      <button class="pc-arrow pc-prev" onclick="movePhoto(-1)" aria-label="Previous photo">‹</button>
+      <div class="pc-cvf" id="pc-cvf"></div>
+      <button class="pc-arrow pc-next" onclick="movePhoto(1)" aria-label="Next photo">›</button>
+    </div>
+    <div class="pc-dots" id="pc-dots"></div>
+  </div>
+</section>
+
+<section id="skills" class="tight">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Capabilities</div>
+      <h2>What I bring to a marketing team</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h4>Brand Strategy & Positioning</h4>
+        <ul>
+          <li>Positioning against internal &amp; external competitors</li>
+          <li>Blue Ocean / Attribute - Differentiation mapping</li>
+          <li>Buyer personas grounded in real survey data</li>
+          <li>Purpose-driven campaign design</li>
+          <li>Cross-cultural and international brand adaptation</li>
+          <li>Go-to-market planning, budget to execution</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Research & Consumer Insight</h4>
+        <ul>
+          <li>Primary survey design & fielding</li>
+          <li>In-store / retail audits</li>
+          <li>Social listening & sentiment analysis</li>
+          <li>Market sizing & segmentation funnels</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Campaign & Media Planning</h4>
+        <ul>
+          <li>Multi-channel media plans & budgets</li>
+          <li>KPI design & performance tracking</li>
+          <li>Creative concept development & brief writing</li>
+          <li>Values-aligned creative strategy</li>
+          <li>Experiential & influencer tactics</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Digital & Inbound Marketing</h4>
+        <ul>
+          <li>SEO / Google Business Profile optimization</li>
+          <li>Inbound funnel design (attract–retain–delight)</li>
+          <li>Copywriting & brand voice adaptation</li>
+          <li>Social & digital channel auditing</li>
+          <li>Website UX heuristic evaluation</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Cross-functional & Client Collaboration</h4>
+        <ul>
+          <li>Cross-functional team collaboration (research, media, writing, creative)</li>
+          <li>Client & stakeholder interviews</li>
+          <li>Incorporating external feedback into live strategy</li>
+          <li>Agency - vendor coordination</li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h4>Quantitative & Financial</h4>
+        <ul>
+          <li>Sales & revenue forecasting</li>
+          <li>NPV / IRR business case modeling</li>
+          <li>Statistical analysis (regression, ANOVA)</li>
+          <li>Data visualization (Excel, Power BI, Tableau)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tools-row">
+      <div class="label">Tools & Platforms</div>
+      <div class="tool-tags">
+        <span class="tool-tag"><img src="assets/brand/euromonitor_logo.png" alt="Euromonitor Passport"></span>
+        <span class="tool-tag"><img src="assets/brand/nvivo_logo.png" alt="NVivo"></span>
+        <span class="tool-tag"><img src="assets/brand/jasp_logo.png" alt="JASP" style="height:30px;"></span>
+        <span class="tool-tag"><img src="assets/brand/questionpro_logo.png" alt="QuestionPro"></span>
+        <span class="tool-tag"><img src="assets/brand/gmb_logo.png" alt="Google My Business"></span>
+        <span class="tool-tag"><img src="assets/brand/excel_logo.png" alt="Excel"></span>
+        <span class="tool-tag"><img src="assets/brand/powerbi_logo.png" alt="Power BI" style="height:42px;"></span>
+        <span class="tool-tag"><img src="assets/brand/ga_logo.png" alt="Google Analytics"></span>
+        <span class="tool-tag"><img src="assets/brand/claude_logo.svg" alt="Claude"></span>
+        <span class="tool-tag"><img src="assets/brand/tableau_logo.png" alt="Tableau"></span>
+        <span class="tool-tag"><img src="assets/brand/nielsen_logo.png" alt="Nielsen Data"></span>
+        <span class="tool-tag"><img src="assets/brand/canva_logo.svg" alt="Canva"></span>
+        <span class="tool-tag"><img src="assets/brand/adobecc_logo.png" alt="Adobe Creative Cloud" style="height:34px;"></span>
+        <span class="tool-tag"><img src="assets/brand/qualtrics_logo.png" alt="Qualtrics"></span>
+        <span class="tool-tag"><img src="assets/brand/statista_logo.png" alt="Statista"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="certifications" class="tight">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Credentials</div>
+      <h2>Licenses & Certifications</h2>
+    </div>
+
+    <div class="cert-item">
+      <img class="cert-logo" src="assets/brand/forage_logo.png" alt="Forage logo" style="object-fit:contain; padding:3px;">
+      <div>
+        <a class="cert-name" href="https://www.theforage.com/completion-certificates/j43dGscQHtJJ57N54/5genWYpfo5b57G7yv_j43dGscQHtJJ57N54_698b58caca792a5fd75d6731_1776715821315_completion_certificate.pdf" target="_blank" rel="noopener">Electronic Arts — Product Management Job Simulation</a>
+        <div class="cert-issuer">Forage</div>
+        <div class="cert-meta">Issued Apr 2026 &nbsp;·&nbsp; Credential ID F2G2yvLSGdvAGTPHW</div>
+      </div>
+    </div>
+
+    <div class="cert-item">
+      <img class="cert-logo" src="assets/brand/forage_logo.png" alt="Forage logo" style="object-fit:contain; padding:3px;">
+      <div>
+        <a class="cert-name" href="https://www.theforage.com/completion-certificates/HgpPSsyQpzob6HEh9/GEZvgDCZaMT3rqfRr_HgpPSsyQpzob6HEh9_698b58caca792a5fd75d6731_1776717676588_completion_certificate.pdf" target="_blank" rel="noopener">Forage Academy — Branding &amp; Design Job Simulation</a>
+        <div class="cert-issuer">Forage</div>
+        <div class="cert-meta">Issued Apr 2026 &nbsp;·&nbsp; Credential ID WRPYEwYjhivPefrWt</div>
+      </div>
+    </div>
+
+    <div class="cert-item">
+      <img class="cert-logo" src="assets/brand/linkedin_learning_logo.png" alt="LinkedIn Learning logo" style="object-fit:contain; padding:4px;">
+      <div>
+        <a class="cert-name" href="https://www.linkedin.com/learning/certificates/319ec6386f7df9688ee187bbb5f86a0987d341ef49ab2cfbfe98f4ae9b554013?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3Bjjt%2B8zizRMSjtj5sEQ9J3Q%3D%3D" target="_blank" rel="noopener">SQL for Data Analysis</a>
+        <div class="cert-issuer">LinkedIn Learning Community</div>
+        <div class="cert-meta">Issued Dec 2023</div>
+        <div class="cert-skills"><strong>Skills:</strong> Data Analysis, SQL</div>
+      </div>
+    </div>
+
+    <div class="cert-item">
+      <img class="cert-logo" src="assets/brand/edx_logo.png" alt="edX logo" style="object-fit:contain;">
+      <div>
+        <a class="cert-name" href="https://courses.edx.org/certificates/44dafe1eeb37493aae1c9e502365d1ca" target="_blank" rel="noopener">edX Verified Certificate — The Art of Selling: Introduction to Selling</a>
+        <div class="cert-issuer">edX</div>
+        <div class="cert-meta">Issued Jul 2020 &nbsp;·&nbsp; Credential ID 44dafe1eeb37493aae1c9e502365d1ca</div>
+        <div class="cert-skills"><strong>Skills:</strong> Communication, Negotiation, +1 skill</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="education" class="tight">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Education</div>
+      <h2>Academic background</h2>
+    </div>
+    <div class="edu-item">
+      <img class="edu-logo edu-logo--sm" src="assets/augustana_seal.svg" alt="Augustana College seal">
+      <div>
+        <div class="edu-date">2024 – 2026</div>
+        <div class="edu-name">Augustana College — Rock Island, Illinois</div>
+        <div class="edu-detail">
+          Coursework in marketing, digital strategy, business communication, and data analytics.
+          Director of Media Planning, AAF National Student Advertising Competition team (2025–26 cycle).
+        </div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <a href="https://wallet.xertify.co/certificates/D1D0F396A001" target="_blank" rel="noopener" title="View verified degree certificate">
+        <img class="edu-logo" src="assets/javeriana_seal.png" alt="Pontificia Universidad Javeriana seal">
+      </a>
+      <div>
+        <div class="edu-date">2019 – 2023</div>
+        <div class="edu-name">Pontificia Universidad Javeriana — Bogotá, Colombia</div>
+        <div class="edu-detail">
+          Bachelor's degree in Business Administration. Bachelor's thesis (Trabajo de Grado, Proyecto
+          Líder modality) built on a real marketing internship at Hamburguesas El Corral (Grupo
+          Nutresa), individually authored and orally defended.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <h2>Let's talk strategy.</h2>
+    <p>
+      I'm looking for marketing, brand, or growth-strategy roles where I can turn a real problem
+      into a strategy that actually holds up. Happy to walk through any of the case studies
+      in more depth.
+    </p>
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <a href="mailto:alejosanchezdaniel@gmail.com">
+          <img class="footer-logo" src="assets/brand/as_monogram_white.png" alt="Email Alejandro Sanchez">
+        </a>
+        <a href="https://www.linkedin.com/in/alejosanchezd/" target="_blank" rel="noopener">
+          <img class="footer-li" src="assets/social/linkedin_icon.png" alt="LinkedIn">
+        </a>
+      </div>
+      <span class="footer-copyright">© 2027 Alejandro Sanchez. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<div id="projects-window">
+  <div class="pz-nav">
+    <div class="container">
+      <img class="nav-logo" src="assets/brand/as_monogram.png" alt="Alejandro Sanchez">
+      <div class="nav-links">
+        <a href="#" onclick="navGoAbout(event)">About</a>
+        <a href="#" onclick="navGoProjects(event)">Projects</a>
+        <a href="#" class="nav-launch" onclick="navGoPhGalleryZ(event)">PhGalleryZ</a>
+        <a href="#" onclick="navGoContact(event)">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="pz-hero">
+    <div class="container">
+      <div class="eyebrow">Marketing Portfolio</div>
+      <h1>Recent Projects and Campaigns</h1>
+      <p class="lede">
+        Some of the media, web and email work I've done plus ten featured strategy projects I
+        elaborated alongside them. All in one place.
+      </p>
+    </div>
+  </header>
+
+<section id="social-work" class="tight">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Latest Accounts</div>
+      <h2>Brand and Marketing Work</h2>
+      <p class="sub">Click on them to know more</p>
+    </div>
+
+    <div class="sw-coverflow" id="sw-coverflow" onmouseenter="stopSwAuto()" onmouseleave="startSwAuto()">
+      <div class="sw-cf-arrow sw-cf-prev" onclick="swMove(-1)" aria-label="Previous">‹</div>
+      <div class="sw-cvf" id="sw-cvf"></div>
+      <div class="sw-cf-arrow sw-cf-next" onclick="swMove(1)" aria-label="Next">›</div>
+    </div>
+
+    <div class="sw-modal-overlay" id="sw-modal" onclick="if(event.target===this) swClose();">
+      <div class="sw-modal-card">
+        <div class="sw-modal-head">
+          <div class="sw-modal-close" onclick="swClose()">✕</div>
+        </div>
+        <div class="sw-modal-body">
+
+    <div class="sw-detail" id="sw-detail-0" style="display:none">
+      <div class="cw-brand">Coronado</div>
+      <div class="cw-tagline">Mexican Kitchen &amp; Margarita House</div>
+
+      <p class="cw-copy">
+        As marketing coordinator for Coronado, I managed the restaurant's website through Popmenu, including
+        the homepage, menu, catering, and ordering pages. I also planned and sent automated email and text
+        campaigns and tracked and responded to guest reviews across Google and the website, where we
+        maintained <span class="metric">82%</span> positive sentiment across <span class="metric">57</span> reviews. One project I especially enjoyed was redesigning
+        the kids' menu. I turned the original generic activity sheet, "Young Amigos," into a themed "Royal
+        Amigos" storybook experience. I also created an original guest survey to better understand what
+        actually brought people into the restaurant, including awareness of the restaurant's food-truck
+        brand, Inches Tacos, as well as visit frequency and ordering habits.
+        <a class="cw-survey-link" href="https://marketingcoronadomex.questionpro.com/a/TakeSurvey?tt=A/cCnb8lvykECHrPeIW9eQ%3D%3D" target="_blank" rel="noopener">View the guest survey ↗</a>
+      </p>
+
+      <div class="cw-stats">
+        <div class="cw-stat">
+          <div class="cw-stat-num">94,752</div>
+          <div class="cw-stat-label">messages delivered</div>
+        </div>
+        <div class="cw-stat">
+          <div class="cw-stat-label">open rates</div>
+          <div class="cw-stat-num">22&ndash;28%</div>
+          <div class="cw-stat-label">above industry average</div>
+        </div>
+        <div class="cw-stat cw-stat-wide">
+          <div class="cw-stat-num">over $24,900</div>
+          <div class="cw-stat-label">in attributed revenue</div>
+        </div>
+      </div>
+
+      <div class="cw-row cw-row-web">
+        <div class="cw-caption cw-caption-side">Website Update with Popmenu</div>
+        <img class="cw-framed cw-web-img" src="assets/social/coronado_web_builder_stack.jpg" alt="Coronado website builder in Popmenu, homepage and header sections">
+      </div>
+
+      <div class="cw-row cw-row-email">
+        <div class="cw-col">
+          <div class="cw-mini-carousel">
+            <img class="active" src="assets/social/coronado_campaigns_browser_2.jpg" alt="Popmenu campaign calendar for Coronado Mexican Kitchen, June 2025">
+            <img src="assets/social/coronado_campaigns_browser_3.jpg" alt="Popmenu campaign calendar for Coronado Mexican Kitchen, April 2025">
+            <img src="assets/social/coronado_campaigns_browser_4.jpg" alt="Popmenu campaign calendar for Coronado Mexican Kitchen, March 2024">
+            <div class="cw-caption">Email marketing campaigns planning</div>
+          </div>
+        </div>
+        <div class="cw-col">
+          <div class="cw-mini-carousel">
+            <img class="active" src="assets/social/coronado_emails_browser_2.jpg" alt="Popmenu automated emails table with revenue data for Coronado">
+            <img src="assets/social/coronado_emails_browser_3.jpg" alt="Popmenu message preview modal for a Coronado birthday email">
+            <img src="assets/social/coronado_emails_browser_4.jpg" alt="Popmenu message details with delivery and open rate charts for Coronado">
+            <div class="cw-caption">Adapted content based on insights</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sw-detail" id="sw-detail-2" style="display:none">
+      <div class="bk-header">
+        <div class="bk-brand">Biokoa</div>
+        <div class="bk-tagline">Organic Chocolate Bar</div>
+      </div>
+
+      <div class="bk-gallery">
+        <img class="bk-framed bk-g-profile" src="assets/social/biokoa_profile.jpg" alt="Biokoa Instagram profile and grid">
+        <img class="bk-framed bk-g-cactus" src="assets/social/biokoa_cactus.jpg" alt="Biokoa chocolate bar with a cactus plant">
+        <img class="bk-framed bk-g-fruits" src="assets/social/biokoa_fruits_tall.jpg" alt="Cacao pods, guava, and Biokoa chocolate bars with a mountain backdrop">
+        <img class="bk-framed bk-g-hatmug" src="assets/social/biokoa_hatmug.jpg" alt="Cup of hot chocolate next to a hand-painted cacao hat and cacao beans">
+        <img class="bk-framed bk-g-walking" src="assets/social/biokoa_walking.jpg" alt="Walking through the cacao farm in Nilo, Cundinamarca">
+        <img class="bk-framed bk-g-post" src="assets/social/biokoa_icecream_post.jpg" alt="Biokoa Instagram post: vegan chocolate ice cream recipe">
+      </div>
+
+      <p class="bk-copy">
+        As part of the social media team for Biokoa, a small Colombian organic cacao brand, we built a
+        content strategy centered on the creation of meaningful content to its audience (women and men in
+        their early 40's) while reaching a new potential niche (healthy young audience) by pairing the
+        brand's chocolate bars with everyday recipes, from fruit with cocoa cream to vegan chocolate ice
+        cream. The goal was to give followers something useful and engaging, rather than just promoting the
+        product. By keeping the strategy organized around a clear narrative, we were able to give the brand a
+        more consistent direction and grow the account to <span class="metric">200+</span> followers across <span class="metric">19</span> posts within its first six
+        months.
+      </p>
+    </div>
+
+    <div class="sw-detail" id="sw-detail-1" style="display:none">
+      <div class="cw-brand" style="margin-bottom:22px;">Per Tutti</div>
+      <p class="cw-copy">
+        Per Tutti was a student-run volunteer organization that published legal
+        education and current affairs content on Instagram, completely outside of coursework. As a member of
+        the Design Committee, and an occasional contributor to research, I designed weekly Instagram posts
+        that turned legal, political, and economic topics into content that was easier to understand and
+        visually engaging, while following the group's brand guidelines. The topics ranged from practical
+        legal rights and civic participation to economic policy, public health, and pop culture. As a group,
+        we grew the account to <span class="metric">2.3K</span> followers by combining research with design and covering topics that gave
+        us the opportunity to interview leaders and professionals, including our coverage of the 2022
+        Colombian presidential elections.
+      </p>
+      <div class="cw-section-title cw-section-title-left">Some of the Instagram posts we designed</div>
+      <div class="pt-row">
+        <a class="pt-col" href="https://www.instagram.com/p/CZIOOe4Ovts/" target="_blank" rel="noopener">
+          <img class="cw-framed" src="assets/social/pertutti_encanto.jpg" alt="Per Tutti Instagram post: Encanto, una historia inspirada en Colombia">
+        </a>
+        <a class="pt-col" href="https://www.instagram.com/p/CZUfEO_rz3k/" target="_blank" rel="noopener">
+          <img class="cw-framed" src="assets/social/pertutti_wallstreet.jpg" alt="Per Tutti Instagram post: Wall Street y la Ley de Infraestructura">
+        </a>
+        <a class="pt-col" href="https://www.instagram.com/p/CTSso7TL7VC/" target="_blank" rel="noopener">
+          <img class="cw-framed" src="assets/social/pertutti_openbanking.jpg" alt="Per Tutti Instagram post: Open Banking">
+        </a>
+      </div>
+    </div>
+
+    <div class="sw-detail" id="sw-detail-3" style="display:none">
+      <div class="cw-brand">ADs</div>
+      <div class="cw-tagline">Advertisers & Developers — Augustana College's Marketing Club</div>
+
+      <div class="cw-row cw-row-web">
+        <img class="cw-framed cw-web-img" src="assets/social/ads_meeting_nfl_brief.jpg" alt="ADs club meeting reviewing the NFL client brief on screen">
+        <div class="cw-photo-credit">Picture from @augustana_ads Instagram post</div>
+      </div>
+
+      <p class="cw-copy">
+        Advertisers & Developers (ADs) is a student club at Augustana College that is run by students in the
+        business, design, public relations and communications disciplines to address a real national
+        marketing brief for the AAF National Student Advertising Competition. We met twice weekly to discuss
+        campaign strategy, brainstorm new concepts, review progress and listen to alumni and guest speakers,
+        which felt more like a student agency than a typical student organization. My first year I was able
+        to work in both research and design, helping to shape the campaign strategy; my second year I joined
+        the board as Director of Media Planning, and helped to design the media plan and budget for the
+        campaign, and contributed to the content for the club's Instagram.
+      </p>
+
+      <div class="cw-section-title">Instagram Content Prototypes</div>
+      <div class="cw-row cw-row-ads">
+        <div class="cw-col">
+          <div class="cw-mini-carousel">
+            <img class="active" src="assets/social/ads_recruit_1.jpg" alt="ADs Instagram recruitment post: Want to be part of something big?">
+            <img src="assets/social/ads_recruit_2.jpg" alt="ADs Instagram recruitment post: Are you someone who enjoys teamwork, thinks outside the box, and have fresh ideas?">
+            <img src="assets/social/ads_recruit_3.jpg" alt="ADs Instagram recruitment post: Someone who also wants to start building a resume that stands out with real-world experience?">
+            <img src="assets/social/ads_recruit_4.jpg" alt="ADs Instagram recruitment post: Then ADs is the right place for you">
+            <img src="assets/social/ads_recruit_5.jpg" alt="ADs Instagram recruitment post: Come and visit us, Edge Center Olin, weekly meeting times">
+            <button class="cw-mc-arrow cw-mc-prev" aria-label="Previous photo">‹</button>
+            <button class="cw-mc-arrow cw-mc-next" aria-label="Next photo">›</button>
+          </div>
+          <div class="cw-caption">Member recruitment post</div>
+        </div>
+        <div class="cw-col">
+          <div class="cw-mini-carousel">
+            <img class="active" src="assets/social/ads_nsac_att_1.jpg" alt="ADs Instagram post: As part of the NSAC National AAF Student Advertising Competition">
+            <img src="assets/social/ads_nsac_att_2.jpg" alt="ADs Instagram post: this spring, ADs will be working">
+            <img src="assets/social/ads_nsac_att_3.jpg" alt="ADs Instagram post: on a strategic plan for">
+            <img src="assets/social/ads_nsac_att_4.jpg" alt="ADs Instagram post: AT&T client reveal">
+            <button class="cw-mc-arrow cw-mc-prev" aria-label="Previous photo">‹</button>
+            <button class="cw-mc-arrow cw-mc-next" aria-label="Next photo">›</button>
+          </div>
+          <div class="cw-caption">NSAC client reveal: AT&amp;T</div>
+        </div>
+        <div class="cw-col">
+          <div class="cw-mini-carousel">
+            <img class="active" src="assets/social/ads_nsac_explain_1.jpg" alt="ADs Instagram post: NSAC, national student advertising competition, contestant since XXXX">
+            <img src="assets/social/ads_nsac_explain_2.jpg" alt="ADs Instagram post: What is The NSAC national AAF student advertising competition?">
+            <img src="assets/social/ads_nsac_explain_3.jpg" alt="ADs Instagram post: NSAC is the premier college advertising competition for over 2,000 students, quote from AAF 2024">
+            <img src="assets/social/ads_nsac_explain_4.jpg" alt="ADs Instagram post: club meeting photo, working to top our best participation, second place finish">
+            <img src="assets/social/ads_nsac_explain_5.jpg" alt="ADs Instagram post: and now we need you">
+            <img src="assets/social/ads_nsac_explain_6.jpg" alt="ADs Instagram post: help us by taking a quick survey to shape this year's game plan">
+            <button class="cw-mc-arrow cw-mc-prev" aria-label="Previous photo">‹</button>
+            <button class="cw-mc-arrow cw-mc-next" aria-label="Next photo">›</button>
+          </div>
+          <div class="cw-caption">What is NSAC?</div>
+        </div>
+      </div>
+    </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker">Selected Work</div>
+      <h2>Project Gallery</h2>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this) closeProjectModal();">
+  <div class="modal-card-wrap">
+    <div class="flip-inner" id="flip-inner">
+      <div class="flip-front">
+        <img id="modal-cover-img" src="" alt="">
+      </div>
+      <div class="flip-back">
+        <div class="modal-head">
+          <div class="p-head-text">
+            <div class="p-tagline" id="modal-tagline"></div>
+            <div class="p-title" id="modal-title"></div>
+            <div class="p-context" id="modal-context"></div>
+          </div>
+          <div class="modal-head-actions">
+            <a class="p-deck" id="modal-deck" href="#" target="_blank" rel="noopener" title="Open full presentation (PDF)" style="display:none;">
+              <img id="modal-deck-img" src="" alt="Presentation preview">
+              <span class="p-deck-label">Deck ↗</span>
+            </a>
+            <button class="modal-close" onclick="closeProjectModal()" aria-label="Close">×</button>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p class="lead" id="modal-lead"></p>
+          <img class="p-hero-img" id="modal-hero-img" src="" alt="" style="display:none;">
+          <ul class="highlight-list" id="modal-highlights"></ul>
+          <div class="tag-row" id="modal-tags"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <h2>Let's talk strategy.</h2>
+    <p>
+      I'm looking for marketing, brand, or growth-strategy roles where I can turn a real problem
+      into a strategy that actually holds up. Happy to walk through any of the case studies
+      in more depth.
+    </p>
+    <div class="footer-bottom">
+      <div class="footer-brand">
+        <a href="mailto:alejosanchezdaniel@gmail.com">
+          <img class="footer-logo" src="assets/brand/as_monogram_white.png" alt="Email Alejandro Sanchez">
+        </a>
+        <a href="https://www.linkedin.com/in/alejosanchezd/" target="_blank" rel="noopener">
+          <img class="footer-li" src="assets/social/linkedin_icon.png" alt="LinkedIn">
+        </a>
+      </div>
+      <span class="footer-copyright">© 2027 Alejandro Sanchez. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+<div id="phgalleryz">
+  <div class="pz-nav pz-nav-dark">
+    <div class="container">
+      <div class="pz-nav-brand">
+        <img src="assets/phgalleryz/phz_circle.png" alt="PhGalleryZ mark">
+      </div>
+      <a href="#" class="pz-close" onclick="closePhGalleryZ(event)">← Back to Portfolio</a>
+    </div>
+  </div>
+
+  <header class="pz-hero">
+    <div class="container">
+      <img class="pz-mark" src="assets/phgalleryz/phz_circle.png" alt="PhGalleryZ logo">
+      <img class="pz-hero-wordmark" src="assets/phgalleryz/phz_wordmark.png" alt="PhGalleryZ">
+      <h1>Photography built around <span class="pz-what">what<svg class="pz-what-underline" viewBox="0 0 200 40" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M5,24 Q100,8 195,18" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/></svg></span> your brand needs to say.</h1>
+    </div>
+  </header>
+
+  <div class="pz-intro">
+    <div class="container">
+      <div class="pz-intro-grid">
+        <div class="pz-intro-carousel-col">
+          <div class="photo-carousel cc-carousel-compact" id="cc-carousel" onmouseenter="stopCcAuto()" onmouseleave="startCcAuto()">
+            <button class="pc-arrow pc-prev" onclick="moveCategory(-1)" aria-label="Previous category">‹</button>
+            <div class="pc-slide pc-side pc-left" id="cc-left" onclick="moveCategory(-1)">
+              <div class="pc-viewport"><div class="pc-track" id="cc-left-track">
+                <div class="pc-frame"><img id="cc-left-img-prev" src="" alt=""></div>
+                <div class="pc-frame"><img id="cc-left-img" src="" alt="Previous category"></div>
+                <div class="pc-frame"><img id="cc-left-img-next" src="" alt=""></div>
+              </div></div>
+              <div class="cc-title" id="cc-left-title"></div>
+            </div>
+            <div class="pc-slide pc-center" id="cc-center" onclick="openCategory()" style="cursor:pointer;">
+              <div class="pc-viewport"><div class="pc-track" id="cc-center-track">
+                <div class="pc-frame"><img id="cc-center-img-prev" src="" alt=""></div>
+                <div class="pc-frame"><img id="cc-center-img" src="" alt="Current category"></div>
+                <div class="pc-frame"><img id="cc-center-img-next" src="" alt=""></div>
+              </div></div>
+              <div class="cc-title" id="cc-center-title"></div>
+            </div>
+            <div class="pc-slide pc-side pc-right" id="cc-right" onclick="moveCategory(1)">
+              <div class="pc-viewport"><div class="pc-track" id="cc-right-track">
+                <div class="pc-frame"><img id="cc-right-img-prev" src="" alt=""></div>
+                <div class="pc-frame"><img id="cc-right-img" src="" alt="Next category"></div>
+                <div class="pc-frame"><img id="cc-right-img-next" src="" alt=""></div>
+              </div></div>
+              <div class="cc-title" id="cc-right-title"></div>
+            </div>
+            <button class="pc-arrow pc-next" onclick="moveCategory(1)" aria-label="Next category">›</button>
+          </div>
+          <div class="pc-dots" id="cc-dots"></div>
+        </div>
+        <p>
+          PhGalleryZ is a personal photography brand I run alongside my marketing work. Through the different
+          projects I've worked on, I've realized that although an image can be worth a thousand words, without
+          purpose or context, it can lose a lot of its potential. That's why I don't approach photography as
+          simply taking a set of pretty pictures. I start by asking what the brand is trying to communicate and
+          getting a sense of its niche and target audience. From there, I build a visual narrative around it,
+          thinking about things like mood, pacing, color, and composition to make sure the images are saying
+          something rather than just looking good.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="pz-approach">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">PHGZ Approach</div>
+        <h2 style="font-size:24px;">How a set gets built</h2>
+      </div>
+      <div class="pz-approach-grid">
+        <div class="pz-step">
+          <div class="pz-step-num">01</div>
+          <h3>Understand the niche</h3>
+          <p>Who the brand is actually talking to, and what that audience needs to feel before they'll trust it.</p>
+        </div>
+        <div class="pz-step">
+          <div class="pz-step-num">02</div>
+          <h3>Build the narrative</h3>
+          <p>Translate that audience into a visual language… light, motion, color, framing, before a single photo is taken.</p>
+        </div>
+        <div class="pz-step">
+          <div class="pz-step-num">03</div>
+          <h3>Shoot the story</h3>
+          <p>Deliver a themed set built around that narrative, not a random grid of unrelated shots.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pz-client">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Recent Client</div>
+        <h2 style="font-size:24px;">Coronado's Case</h2>
+      </div>
+      <div class="cw-poster" onclick="openCoronadoModal()" role="button" tabindex="0" aria-label="Open Coronado case study">
+        <img class="cw-poster-hero-img" src="assets/social/coronado_hero_banner.jpg" alt="Coronado Mexican Kitchen &amp; Margarita House — Where every sip sparks a story">
+      </div>
+    </div>
+  </section>
+
+  <div class="cw-poster-modal-overlay" id="cw-poster-modal" onclick="if(event.target===this) closeCoronadoModal();">
+    <div class="cw-poster-modal-wrap">
+      <div class="cw-poster-flip-inner" id="cw-poster-flip-inner">
+        <div class="cw-poster-flip-front">
+          <img src="assets/social/coronado_hero_banner.jpg" alt="Coronado Mexican Kitchen &amp; Margarita House — Where every sip sparks a story">
+        </div>
+        <div class="cw-poster-flip-back">
+          <div class="cw-poster-close" onclick="closeCoronadoModal()">✕</div>
+          <div class="cw-poster-body">
+            <div class="pz-client-grid">
+              <div class="pz-client-carousel-col">
+                <div class="cg-carousel cg-carousel-compact" id="cg-carousel" onmouseenter="stopCgAuto()" onmouseleave="startCgAuto()">
+                  <button class="cg-arrow cg-prev" onclick="moveCg(-1)" aria-label="Previous photo">‹</button>
+                  <div class="cg-viewport">
+                    <div class="cg-track" id="cg-track">
+                      <div class="cg-frame"><img id="cg-img-prev" src="" alt=""></div>
+                      <div class="cg-frame"><img id="cg-img" src="" alt="Coronado drink photography"></div>
+                      <div class="cg-frame"><img id="cg-img-next" src="" alt=""></div>
+                    </div>
+                    <img class="cg-watermark" src="assets/phgalleryz/phz_circle.png" alt="" aria-hidden="true">
+                  </div>
+                  <button class="cg-arrow cg-next" onclick="moveCg(1)" aria-label="Next photo">›</button>
+                </div>
+                <div class="cg-dots" id="cg-dots"></div>
+                <div class="cw-client-video-wrap">
+                  <video class="cw-client-video cw-client-video-a" id="cw-client-video-a" muted playsinline
+                         onended="cwOnVideoEnded('a')" poster="assets/social/coronado_bar_backbar.jpg">
+                    <source src="assets/social/coronado_clip1.mp4" type="video/mp4">
+                  </video>
+                  <video class="cw-client-video cw-client-video-b" id="cw-client-video-b" muted playsinline
+                         onended="cwOnVideoEnded('b')">
+                    <source src="assets/social/coronado_clip2.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+              <div class="pz-client-text-col">
+            <div class="cw-section-title cw-section-title-left cw-case-title-lg">Beyond the Plate: How Customer Motivations Shape Brand Communications</div>
+            <p class="pz-client-copy">
+              When I first started working at Coronado, I didn't start in a marketing role. I started as a server,
+              interacting firsthand with customers, hearing their stories, and getting to know more about who they
+              were, what they did, and what they had to say. That naturally made me curious about why they chose our
+              restaurant. Whether it was for a big event, a date, or even a solo meal, I wanted to understand what
+              they valued about the experience.
+            </p>
+            <p class="pz-client-copy">
+              As time went by and sales started to slow, I felt like something was missing. Based on my experience
+              with Biokoa and the importance of having a strong online presence, I looked at the restaurant's
+              Instagram and noticed that it lacked engaging content and well-composed photography. But rather than
+              immediately creating posts without context, I wanted to understand our customers first. Based on the
+              different stories I had heard from them, I proposed including a <a class="cw-survey-link" href="https://marketingcoronadomex.questionpro.com/a/TakeSurvey?tt=A/cCnb8lvykECHrPeIW9eQ%3D%3D" target="_blank" rel="noopener" style="display:inline; margin:0; font-size:inherit;">survey</a> with receipts so we could get a
+              better picture of our guests and identify where a potential campaign could make an impact.
+            </p>
+            <p class="pz-client-copy">
+              I also proposed a drink photoshoot to give the page a stronger visual identity. After gathering
+              insights, I noticed that people were missing a stronger sense of connection with the restaurant's
+              culture and that our target audience were mostly families who put their kids first when choosing
+              places to dine in. From there, I developed a narrative around repositioning how people saw the
+              restaurant, drawing on its name to create a story-driven experience for families and kids through
+              "Royal Amigos." I also proposed physical props for the restaurant to bring that world beyond the menu,
+              although that idea ultimately didn't move forward because of budget constraints.
+            </p>
+              </div>
+            </div>
+
+            <div class="cw-section-title cw-section-title-left">Instagram Post Designs</div>
+            <div class="cw-row cw-row-promos">
+              <img class="cw-framed" src="assets/social/coronado_cinco_de_mayo.jpg" alt="Coronado Cinco de Mayo celebration promo graphic">
+              <img class="cw-framed" src="assets/social/coronado_mothers_day.jpg" alt="Coronado Mother's Day promo graphic">
+            </div>
+
+            <div class="cw-section-title cw-section-title-left">Kids Menu Concept Update</div>
+            <div class="cw-row cw-row-menu">
+              <div class="cw-menu-col">
+                <div class="cw-caption cw-caption-lg">Before</div>
+                <img class="cw-framed" src="assets/social/coronado_menu_before.jpg" alt="Original Young Amigos kids menu, cluttered clip-art design">
+              </div>
+              <div class="cw-menu-col cw-menu-col-pair">
+                <div class="cw-caption cw-caption-lg">After</div>
+                <div class="cw-menu-pair">
+                  <img class="cw-framed" src="assets/social/coronado_menu_after_front.jpg" alt="Redesigned Royal Amigos kids menu, front side with storybook theme">
+                  <img class="cw-framed" src="assets/social/coronado_menu_after_back.jpg" alt="Redesigned Royal Amigos kids menu, back side with themed word search and maze">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="pz-work">
+    <div class="container">
+      <div class="section-head">
+        <div class="kicker">Selected Work</div>
+        <h2 style="font-size:24px;">Sets, grouped by the story they tell</h2>
+      </div>
+
+      <div class="pz-cluster" id="pzc-adventure">
+        <div class="pz-cluster-head">
+          <h3>Adventure & Outdoor</h3>
+          <p>Movement, scale, and open space — for gear, travel, and outdoor-lifestyle brands.</p>
+        </div>
+        <div class="pz-grid">
+          <img src="assets/phgalleryz/phz_03.jpg" alt="PhGalleryZ — amusement park at sunset">
+          <img src="assets/phgalleryz/phz_04.jpg" alt="PhGalleryZ — sitting by the water at sunset">
+          <img src="assets/phgalleryz/phz_05.jpg" alt="PhGalleryZ — coastal rocks and shoreline">
+          <img src="assets/phgalleryz/phz_06.jpg" alt="PhGalleryZ — rocky beach under blue sky">
+          <img src="assets/phgalleryz/phz_07.jpg" alt="PhGalleryZ — hiking a coastal trail">
+          <img src="assets/phgalleryz/phz_08.jpg" alt="PhGalleryZ — palm grove">
+        </div>
+      </div>
+
+      <div class="pz-cluster" id="pzc-travel">
+        <div class="pz-cluster-head">
+          <h3>Travel & Hospitality</h3>
+          <p>Distance, skylines, and golden hour — for travel, real estate, and hospitality brands.</p>
+        </div>
+        <div class="pz-grid">
+          <img src="assets/phgalleryz/phz_09.jpg" alt="PhGalleryZ — Seattle skyline at sunset">
+          <img src="assets/phgalleryz/phz_10.jpg" alt="PhGalleryZ — lake view over Guatapé">
+          <img src="assets/phgalleryz/phz_11.jpg" alt="PhGalleryZ — mountain from an airplane window">
+          <img src="assets/phgalleryz/phz_12.jpg" alt="PhGalleryZ — Seattle skyline in black and white">
+          <img src="assets/phgalleryz/phz_13.jpg" alt="PhGalleryZ — airplane wing at sunset">
+          <img src="assets/phgalleryz/phz_19.jpg" alt="PhGalleryZ — Medellín skyline at dusk">
+        </div>
+      </div>
+
+      <div class="pz-cluster" id="pzc-urban">
+        <div class="pz-cluster-head">
+          <h3>Urban & Lifestyle</h3>
+          <p>Street-level texture and energy — for fashion, food, and city-lifestyle brands.</p>
+        </div>
+        <div class="pz-grid">
+          <img src="assets/phgalleryz/phz_15.jpg" alt="PhGalleryZ — Chicago street in winter">
+          <img src="assets/phgalleryz/phz_16.jpg" alt="PhGalleryZ — downtown Chicago street corner">
+          <img src="assets/phgalleryz/phz_17.jpg" alt="PhGalleryZ — Chicago restaurant archway">
+          <img src="assets/phgalleryz/phz_18.jpg" alt="PhGalleryZ — Tribune Tower in black and white">
+        </div>
+      </div>
+
+      <div class="pz-cluster" id="pzc-mood">
+        <div class="pz-cluster-head">
+          <h3>Mood & Atmosphere</h3>
+          <p>Color, sky, and quiet — for wellness, hospitality, and lifestyle brands selling a feeling.</p>
+        </div>
+        <div class="pz-grid">
+          <img src="assets/phgalleryz/phz_20.jpg" alt="PhGalleryZ — sunrise over the treeline">
+          <img src="assets/phgalleryz/phz_21.jpg" alt="PhGalleryZ — orange sunset clouds over trees">
+          <img src="assets/phgalleryz/phz_22.jpg" alt="PhGalleryZ — dusk sky through silhouetted trees">
+          <img src="assets/phgalleryz/phz_23.jpg" alt="PhGalleryZ — moonrise over dark mountains">
+          <img src="assets/phgalleryz/phz_24.jpg" alt="PhGalleryZ — pink clouds at dusk">
+          <img src="assets/phgalleryz/phz_25.jpg" alt="PhGalleryZ — pink and purple sunset over hills">
+          <img src="assets/phgalleryz/phz_26.jpg" alt="PhGalleryZ — blue hour sky over mountains">
+        </div>
+      </div>
+
+      <div class="pz-cluster" id="pzc-community">
+        <div class="pz-cluster-head">
+          <h3>Community & Local</h3>
+          <p>Quiet, human moments — for local, community-rooted brands that sell trust.</p>
+        </div>
+        <div class="pz-grid">
+          <img src="assets/phgalleryz/phz_01.jpg" alt="PhGalleryZ — a small roadside shop in Colombia">
+          <img src="assets/phgalleryz/phz_02.jpg" alt="PhGalleryZ — street at sunset with car headlights">
+          <img src="assets/phgalleryz/phz_14.jpg" alt="PhGalleryZ — sunset light through a window">
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="letschat" class="tight">
+  <div class="container">
+    <div class="lc-box">
+      <h2>Have a brand that needs a story told?</h2>
+      <p class="lc-sub">
+        I'd love to explore working together. Please share a high level summary of the company and
+        project you need help with below. I'll email you back within 24 hrs to schedule an
+        obligation-free consult.
+      </p>
+      <form class="lc-form" id="lc-form" action="https://formsubmit.co/alejosanchezdaniel@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New message from your portfolio site">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <div class="lc-row">
+          <div class="lc-field">
+            <label for="lc-name">Name*</label>
+            <input type="text" id="lc-name" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="lc-field">
+            <label for="lc-email">Email*</label>
+            <input type="email" id="lc-email" name="email" placeholder="your.name@mail.com" required>
+          </div>
+        </div>
+        <div class="lc-field">
+          <label for="lc-message">Message*</label>
+          <textarea id="lc-message" name="message" placeholder="Start typing your message here..." required></textarea>
+        </div>
+        <div class="lc-note">Don't share passwords, banking details or sensitive information in your message.</div>
+        <button type="submit" class="lc-submit" id="lc-submit-btn">Send Mail</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+var projectsData = [
+  {
+    id: 1,
+    order: 3,
+    cover: "assets/covers/p01.jpg",
+    bannerTitle: "A peace story reimagined as a national awareness campaign",
+    tagline: "Real Client · Capstone Strategy Engagement",
+    title: "Federación Chocolate — \"Cultiva la Paz, Cultiva Cacao\"",
+    context: "Strategy In Action, Pontificia Universidad Javeriana · 2022",
+    deckPdf: "assets/decks/p01_fedecacao.pdf",
+    deckThumb: "assets/thumbs/p01_fedecacao.jpg",
+    lead: "A semester-long project for Federación Chocolate, a premium chocolate brand launched by Colombia's national cocoa-growers' federation, which held just <span class=\"metric\">3%</span> market share against three much larger competitors. I interviewed the brand's General Manager, conducted field observation at its main store, and ran four rounds of primary research. The goal was to go beyond the initial \"raise brand awareness\" brief and use those insights to build a campaign backed by research and financial projections.",
+    heroImg: null,
+    highlights: [
+      "Used a Blue Ocean Strategy canvas to map the brand against its competitors and found that it couldn't realistically compete on taste, price, or variety. The stronger opportunity was to differentiate through an emotional story and a sense of social impact.",
+      "Built the campaign around a real story: <span class=\"metric\">1,300+</span> Colombian farmers who moved from illegal coca cultivation to legal cocoa farming through a peace program supported by the federation, alongside the launch of a new regional product line.",
+      "Took the idea beyond the deck by producing an actual campaign video with an outside creative studio and music producer. I then tested the concept through a dedicated survey, where <span class=\"metric\">92%</span> wanted the story to be told and <span class=\"metric\">71%</span> said they would buy a product carrying its seal.",
+      "Built a <span class=\"metric\">175.5M COP</span> capital budget and three sales scenarios, all tied back to a specific goal: increasing brand awareness by <span class=\"metric\">5</span> percentage points over three years."
+    ],
+    tags: ["Brand Positioning","Blue Ocean Strategy","Purpose-Driven Marketing","Primary Research","Creative Production","Financial Modeling"]
+  },
+  {
+    id: 2,
+    order: 4,
+    cover: "assets/covers/p02.jpg",
+    bannerTitle: "Repositioning a legacy snack brand for a health-conscious audience",
+    tagline: "Real Client · National Competition",
+    title: "Manitoba National Marketing Challenge",
+    context: "Marketing Management, Pontificia Universidad Javeriana · 2020",
+    deckPdf: "assets/decks/p02_manitoba.pdf",
+    deckThumb: "assets/thumbs/p02_manitoba.jpg",
+    lead: "Manitoba, a 40-year-old Colombian snack brand, brought an unusual challenge to an inter-university competition: its own private-label products, made for retailers like D1 and Ara, were outperforming its branded products in sales. Each semifinalist team presented directly to Manitoba's brand representatives, who selected the winning teams.",
+    heroImg: null,
+    highlights: [
+      "Designed and fielded my own consumer survey instead of relying only on secondary data. I found that the main objection from the target buyer was that they didn't identify with the existing \"healthy lifestyle\" messaging.",
+      "Reframed the challenge from a pricing and product problem into an identity and segmentation problem, focusing Manitoba's new \"Consciente\" line on a more specific audience rather than trying to appeal to everyone.",
+      "Built a full go-to-market plan that included a socially focused brand campaign, a loyalty program, in-store tasting activations, and a bottom-up market-sizing model estimating a <span class=\"metric\">6.57 trillion COP</span> total addressable market using national demographic and socioeconomic data."
+    ],
+    tags: ["Brand Positioning","Consumer Research","Go-To-Market Planning","Competitive Analysis"]
+  },
+  {
+    id: 3,
+    order: 1,
+    cover: "assets/covers/p03.jpg",
+    bannerTitle: "Directing multi-million dollar campaigns for AT&amp;T and the NFL",
+    tagline: "National Competition · Leadership Growth",
+    title: "AAF National Student Advertising Competition — AT&amp;T &amp; NFL",
+    context: "Augustana College Marketing Club · 2024–2026",
+    deckPdf: null,
+    deckThumb: null,
+    lead: "Two consecutive years competing with Augustana College in the AAF's National Student Advertising Competition (NSAC), where student agencies respond to a live brief from a major brand.",
+    heroImg: null,
+    heroImgAlt: null,
+    highlights: [
+      "<img src=\"assets/covers/nsac_att_book.jpg\" alt=\"AT&amp;T &#39;Connecting Changes Everything&#39; NSAC campaign book cover\"><div class=\"hl-text-col\"><p><strong>AT&amp;T \"Connecting Changes Everything\" (2025):</strong> Contributed to ideation and cross-functional strategy sessions for a <span class=\"metric\">$71.85M</span> integrated campaign focused on AT&amp;T's declining relevance with Gen Z, informed by an original survey of <span class=\"metric\">500+</span> respondents.</p><p>The main insight behind the campaign was that Gen Z's disconnect from AT&amp;T was more about relevance than price. We found that through our <span class=\"metric\">500+</span> respondent survey and used it to build one creative platform: \"AT&amp;T is connecting you through your special moments,\" which was then brought to life across TV, social, and experiential tactics.</p></div>",
+      "<img src=\"assets/covers/nsac_nfl_book.jpg\" alt=\"NFL &#39;Why Wouldn&#39;t We?&#39; NSAC campaign book cover\"><div class=\"hl-text-col\"><p><strong>NFL \"Why Wouldn't We?\" (2026):</strong> Promoted to Director of Media Planning, where I built and owned a <span class=\"metric\">$10.36M</span> multi-channel media plan and budget projected to generate <span class=\"metric\">1.07 billion</span> impressions across paid social, streaming, OOH, and experiential tactics. I also developed the KPI framework used to measure the plan.</p><p>The campaign was built around the idea that the NFL's youth-initiative awareness gap was more of a storytelling problem than an impact problem. We developed that insight through <span class=\"metric\">600+</span> survey responses, <span class=\"metric\">35+</span> interviews, and A/B-tested creative, ultimately bringing it together into one campaign platform.</p></div>"
+    ],
+    tags: ["Media Planning","Budget Management","National Competition","Campaign Strategy","KPI Design"]
+  },
+  {
+    id: 4,
+    order: 7,
+    cover: "assets/covers/p04.jpg",
+    bannerTitle: "Uncovering brand risks through multi-method market research",
+    tagline: "Multi-Method Market Research",
+    title: "Axe (Unilever) — Colombian Market Research Study",
+    context: "Market Research, Pontificia Universidad Javeriana · 2019",
+    deckPdf: "assets/decks/p04_axe.pdf",
+    deckThumb: "assets/thumbs/p04_axe.jpg",
+    lead: "A market research project focused on Axe deodorant in the Colombian personal-care market, using three different research methods to look at the brand from different angles.",
+    heroImg: null,
+    highlights: [
+      "Used Euromonitor's Passport platform to analyze category and pricing trends over time, and NVivo to conduct a structured social-listening study across four platforms.",
+      "Personally visited three retail locations — a pharmacy, supermarket chain, and independent drugstore — to compare shelf placement, nearby competitors, and pricing.",
+      "Identified a real brand risk during the social-listening research: a Facebook name collision with an unrelated business using the same \"Axe\" name, highlighting a potential issue for the brand's positioning and online presence."
+    ],
+    tags: ["Market Research","Social Listening","Retail Audit","Bilingual Reporting"]
+  },
+  {
+    id: 5,
+    order: 9,
+    cover: "assets/covers/p05.jpg",
+    bannerTitle: "Turning grocery purchases into a childhood malnutrition solution",
+    tagline: "Real Client · Cause Marketing",
+    title: "Alpina x Fundación Nutrir — Childhood Malnutrition Campaign",
+    context: "Social Marketing, Pontificia Universidad Javeriana · 2022",
+    deckPdf: "assets/decks/p05_alpina.pdf",
+    deckThumb: "assets/thumbs/p05_alpina.jpg",
+    lead: "Designed a cause-marketing partnership between Alpina, one of Colombia's most-preferred consumer brands, and Fundación Nutrir to address chronic childhood malnutrition in Bogotá. The project applied social-marketing principles across the full planning process, from identifying the problem and target audience to developing the partnership and campaign strategy.",
+    heroImg: null,
+    highlights: [
+      "Fielded an original survey with <span class=\"metric\">44</span> respondents and found that the target audience was \"concerned but disengaged\": they cared about childhood malnutrition but didn't know where to act. That finding became the foundation for the campaign.",
+      "Designed a purchase-triggered donation mechanic, \"Alpina Alimenta a los Niños,\" with a visible packaging redesign to address the audience's stated lack of awareness around ways to help.",
+      "Built a fully itemized campaign budget covering packaging, production, and out-of-home advertising, turning the idea into an executable plan rather than just an awareness campaign."
+    ],
+    tags: ["Cause Marketing","Social Marketing","Survey Research","Campaign Budgeting"]
+  },
+  {
+    id: 6,
+    order: 8,
+    cover: "assets/covers/p06.jpg",
+    bannerTitle: "Proposing a global engagement lift through localized content",
+    tagline: "Digital Channel Audit &amp; Campaign Design",
+    title: "NBA — Digital Marketing Audit &amp; \"NBA World Tour\" Proposal",
+    context: "Digital Marketing, Augustana College · 2024",
+    deckPdf: "assets/decks/p06_nba.pdf",
+    deckThumb: "assets/thumbs/p06_nba.jpg",
+    lead: "A six-month audit of the NBA's real digital marketing across six channels, followed by a global expansion campaign proposal built from the findings and supported by a detailed budget.",
+    heroImg: null,
+    highlights: [
+      "Followed the NBA's messaging across a full content cycle — playoffs, draft, off-season, and the start of the new season — and built my own engagement and follower chart to support channel prioritization, using dated screenshots as evidence.",
+      "Compared the NBA's digital approach with other major sports leagues, including the NFL and F1, and identified a specific gap: not enough localized and regional content for a growing international fan base.",
+      "Proposed \"NBA World Tour,\" a global expansion campaign with a goal of increasing engagement by <span class=\"metric\">20%</span> in six months, three priority channels, targeted markets, and a five-stage rollout plan."
+    ],
+    tags: ["Digital Strategy","Channel Audit","Competitive Benchmarking","Campaign Design"]
+  },
+  {
+    id: 7,
+    order: 6,
+    cover: "assets/covers/p07.jpg",
+    bannerTitle: "Refining a Brazil market-entry strategy with real local feedback",
+    tagline: "International Market Entry · Real Feedback Loop",
+    title: "Costco Wholesale — Brazil (São Paulo) Market Entry Strategy",
+    context: "International Business Strategy, Augustana College · Current",
+    deckPdf: "assets/decks/p07_costco.pdf",
+    deckThumb: "assets/thumbs/p07_costco.jpg",
+    lead: "Designed a full market-entry strategy for Costco's expansion into São Paulo. The strategy was reviewed by a Brazil-based contact who provided written feedback, which I used to refine the final recommendation rather than treating it as a one-draft academic project.",
+    heroImg: null,
+    highlights: [
+      "Caught and corrected a strategic mistake after feedback: a proposed TV ad slot didn't make sense for the campaign's target audience of working women, so I replaced it with a digital-first approach.",
+      "Interviewed the Brazilian contact directly, whose insight that Brazilian consumers tend to be less brand-loyal and more driven by convenience changed the distribution strategy toward partnerships with local distributors.",
+      "Wrote an original Portuguese-language campaign tagline and developed a named influencer campaign instead of simply adapting a U.S. concept. The approach also considered Hofstede's cultural dimensions and Brazilian advertising law."
+    ],
+    tags: ["International Marketing","Cross-Cultural Strategy","Primary Interview Research","Localization"]
+  },
+  {
+    id: 8,
+    order: 5,
+    cover: "assets/covers/p08.jpg",
+    bannerTitle: "Positioning a smart mirror startup in a crowded fitness market",
+    tagline: "Venture Strategy · Product Positioning",
+    title: "Schermo — Smart Mirror Venture Plan",
+    context: "Entrepreneurship &amp; Innovation in Business Models, PUJ · 2020–2021",
+    deckPdf: "assets/decks/p08_schermo.pdf",
+    deckThumb: "assets/thumbs/p08_schermo.jpg",
+    lead: "Built a full venture concept called Schermo, a smart mirror that corrects home-workout form in real time. I took the idea from identifying the opportunity through positioning and differentiation to building and defending the financial case, with a focus on finding a clear place for the product in a crowded home-fitness market.",
+    heroImg: null,
+    highlights: [
+      "Identified why the closest competitor, an <span class=\"metric\">$8.8M COP</span> smart mirror, wasn't actually competing for the same customer: it focused on entertainment and content, while Schermo focused on correcting workout form. That distinction became central to the product's positioning.",
+      "Built a segmentation funnel that narrowed Colombia's population down to a <span class=\"metric\">609,449</span>-person target market using socioeconomic strata, geography, and psychographic filters.",
+      "Built a five-year financial model showing a positive NPV and <span class=\"metric\">27% IRR</span>, and negotiated an equity-for-labor partnership that reduced the venture's capital requirement by <span class=\"metric\">90M COP</span>."
+    ],
+    tags: ["Product Positioning","Market Sizing","Financial Modeling","Competitive Strategy"]
+  },
+  {
+    id: 9,
+    order: 2,
+    cover: "assets/covers/p09.jpg",
+    bannerTitle: "Sales lift projection by optimizing Google Business Profile",
+    tagline: "Solo-Authored Capstone · Built on Real Internship",
+    title: "El Corral — Google Business Profile &amp; Inbound Marketing Strategy",
+    context: "Bachelor's Thesis, Pontificia Universidad Javeriana · 2022",
+    deckPdf: "assets/decks/p09_elcorral.pdf",
+    deckThumb: "assets/thumbs/p09_elcorral.jpg",
+    lead: "For my bachelor's thesis, I worked on a real problem I had come across during my marketing internship at Hamburguesas El Corral, part of Grupo Nutresa and one of the most-recalled fast-food brands in Colombia. I developed the project independently and it went through a double-blind evaluation.",
+    heroImg: null,
+    highlights: [
+      "While managing the monthly Google Business Profile review for <span class=\"metric\">200+</span> restaurant locations, I noticed there wasn't really an internal process for optimizing it. That became the starting point for my thesis.",
+      "Used real, non-public data from an internal meeting between El Corral's marketing team and Google, including Google's stated <span class=\"metric\">38%</span> increase in visit probability and <span class=\"metric\">29%</span> increase in purchase probability.",
+      "Built a scenario-based sales model comparing the business with and without the SEO intervention, projecting a <span class=\"metric\">14.5%</span> sales lift. Based on my own survey results, I also recommended pairing the digital improvement with a separate product-quality initiative rather than presenting SEO as the only solution."
+    ],
+    tags: ["SEO / Inbound Marketing","Independent Research","Quantitative Modeling","Real Corporate Data"]
+  },
+  {
+    id: 10,
+    order: 10,
+    cover: "assets/covers/p10.jpg",
+    bannerTitle: "Diagnosing the real driver of customer dissatisfaction with SERVQUAL",
+    tagline: "Customer Experience Research",
+    title: "Tienda Javeriana — Service Quality Diagnosis (SERVQUAL)",
+    context: "Service Management, Pontificia Universidad Javeriana · 2022",
+    deckPdf: "assets/decks/p10_tienda.pdf",
+    deckThumb: "assets/thumbs/p10_tienda.jpg",
+    lead: "Used the SERVQUAL framework to identify what was actually driving dissatisfaction at Universidad Javeriana's on-campus bookstore. Since our team were also students who used the bookstore ourselves, we were studying the same customer experience we had firsthand.",
+    heroImg: null,
+    highlights: [
+      "Designed and fielded a <span class=\"metric\">30-question</span> Likert survey across five SERVQUAL dimensions — tangibles, reliability, assurance, responsiveness, and empathy — with <span class=\"metric\">40</span> real respondents.",
+      "Found that staff friendliness and how employees handled customer questions were the main recurring pain points, even though the overall results made the store look like it was performing well.",
+      "Paired an emotional brand-loyalty campaign with a practical operational fix: reconfiguring the website instead of treating the problem as only a staff-training issue."
+    ],
+    tags: ["SERVQUAL","Customer Experience","Survey Design","Service Strategy"]
+  }
+];
+
+var galleryGrid = document.getElementById("gallery-grid");
+var galleryOrder = projectsData.slice().sort(function(a,b){ return a.order - b.order; });
+galleryOrder.forEach(function(p){
+  var tile = document.createElement("div");
+  tile.className = "gallery-tile";
+  tile.setAttribute("onclick", "openProjectModal(" + p.id + ", this)");
+  tile.innerHTML = '<img src="' + p.cover + '" alt="' + p.title.replace(/"/g,'&quot;') + ' cover" loading="lazy">' +
+    (p.bannerTitle ? '<div class="gallery-tile-title">' + p.bannerTitle + '</div>' : '');
+  galleryGrid.appendChild(tile);
+});
+
+var overlay = document.getElementById("modal-overlay");
+var flipInner = document.getElementById("flip-inner");
+var flipTimer = null;
+
+function openProjectModal(id){
+  var p = projectsData.find(function(x){ return x.id === id; });
+  if(!p) return;
+
+  document.getElementById("modal-cover-img").src = p.cover;
+  document.getElementById("modal-cover-img").alt = p.title + " cover";
+  document.getElementById("modal-tagline").innerHTML = p.tagline;
+  document.getElementById("modal-title").innerHTML = p.title;
+  document.getElementById("modal-context").innerHTML = p.context;
+  document.getElementById("modal-lead").innerHTML = p.lead;
+
+  var deckLink = document.getElementById("modal-deck");
+  if(p.deckPdf){
+    deckLink.style.display = "";
+    deckLink.href = p.deckPdf;
+    document.getElementById("modal-deck-img").src = p.deckThumb;
+    document.getElementById("modal-deck-img").alt = p.title + " presentation preview";
+  } else {
+    deckLink.style.display = "none";
+  }
+
+  var heroImgEl = document.getElementById("modal-hero-img");
+  if(p.heroImg){
+    heroImgEl.style.display = "";
+    heroImgEl.src = p.heroImg;
+    heroImgEl.alt = p.heroImgAlt || "";
+  } else {
+    heroImgEl.style.display = "none";
+  }
+
+  var hlList = document.getElementById("modal-highlights");
+  hlList.innerHTML = "";
+  p.highlights.forEach(function(h){
+    var li = document.createElement("li");
+    if(h.indexOf("<img") === 0){ li.className = "hl-image-row"; }
+    li.innerHTML = h;
+    hlList.appendChild(li);
+  });
+
+  var tagRow = document.getElementById("modal-tags");
+  tagRow.innerHTML = "";
+  p.tags.forEach(function(t){
+    var span = document.createElement("span");
+    span.className = "tag";
+    span.textContent = t;
+    tagRow.appendChild(span);
+  });
+
+  document.body.classList.add("modal-open");
+  overlay.classList.remove("flipped");
+  overlay.classList.add("active");
+
+  clearTimeout(flipTimer);
+  flipTimer = setTimeout(function(){
+    overlay.classList.add("flipped");
+  }, 380);
+}
+
+function closeProjectModal(){
+  clearTimeout(flipTimer);
+  overlay.classList.remove("flipped");
+  document.body.classList.remove("modal-open");
+  setTimeout(function(){
+    overlay.classList.remove("active");
+  }, 300);
+}
+
+document.addEventListener("keydown", function(e){
+  if(e.key === "Escape" && overlay.classList.contains("active")){
+    closeProjectModal();
+  }
+});
+
+/* PHOTO GALLERY (carousel) */
+var photoGalleryImages = [
+  "assets/gallery/g1.jpg",
+  "assets/gallery/g2.jpg",
+  "assets/gallery/g3.jpg",
+  "assets/gallery/g4.jpg",
+  "assets/gallery/g5.jpg",
+  "assets/gallery/g6.jpg",
+  "assets/gallery/g7.jpg"
+];
+/* Generic true-scale coverflow engine — persistent items, transform-only updates,
+   so CSS transitions animate a real "grow into center / shrink to the side" motion. */
+function createCoverflow(opts){
+  var stage = document.getElementById(opts.stageId);
+  var n = opts.items.length;
+  var index = opts.startIndex || 0;
+  var els = [];
+  var autoTimer = null;
+
+  function signedDist(i){
+    var raw = ((i - index) % n + n) % n;
+    if(raw > n / 2) raw -= n;
+    return raw;
+  }
+
+  function layout(){
+    els.forEach(function(el, i){
+      var d = signedDist(i);
+      var ad = Math.abs(d);
+      var scale = ad === 0 ? 1 : (ad === 1 ? opts.sideScale : opts.farScale);
+      var opacity = ad === 0 ? 1 : (ad === 1 ? opts.sideOpacity : (ad === 2 ? opts.farOpacity : 0));
+      el.style.transform = "translateX(" + (d * opts.spacing) + "px) scale(" + scale + ")";
+      el.style.opacity = opacity;
+      el.style.zIndex = 100 - ad;
+      el.style.pointerEvents = ad <= 1 ? "auto" : "none";
+      el.style.filter = ad === 0 ? "none" : (opts.sideFilter || "none");
+    });
+    renderDots();
+  }
+
+  function renderDots(){
+    if(!opts.dotsId) return;
+    var wrap = document.getElementById(opts.dotsId);
+    if(!wrap) return;
+    wrap.innerHTML = "";
+    opts.items.forEach(function(_, i){
+      var dot = document.createElement("div");
+      dot.className = "pc-dot" + (i === index ? " active" : "");
+      dot.addEventListener("click", function(){ goToIndex(i); });
+      wrap.appendChild(dot);
+    });
+  }
+
+  function handleClick(i){
+    var d = signedDist(i);
+    if(d === 0){ if(opts.onCenterClick) opts.onCenterClick(); return; }
+    move(d > 0 ? 1 : -1);
+    if(opts.onSideSettle) setTimeout(opts.onSideSettle, opts.animMs || 550);
+  }
+
+  function move(dir){
+    stopAuto();
+    index = ((index + dir) % n + n) % n;
+    layout();
+    startAuto();
+  }
+
+  function goToIndex(i){
+    stopAuto();
+    index = i;
+    layout();
+    startAuto();
+  }
+
+  function startAuto(){
+    stopAuto();
+    if(!opts.autoIntervalMs) return;
+    autoTimer = setInterval(function(){ move(1); }, opts.autoIntervalMs);
+  }
+
+  function stopAuto(){
+    if(autoTimer){ clearInterval(autoTimer); autoTimer = null; }
+  }
+
+  els = opts.items.map(function(item, i){
+    var el = document.createElement("div");
+    el.className = opts.itemClass;
+    var img = document.createElement("img");
+    img.src = opts.getSrc(item);
+    img.alt = opts.getAlt ? opts.getAlt(item) : "";
+    el.appendChild(img);
+    if(opts.getTitle){
+      var t = document.createElement("div");
+      t.className = "cc-title";
+      t.textContent = opts.getTitle(item);
+      el.appendChild(t);
+    }
+    el.addEventListener("click", function(){ handleClick(i); });
+    stage.appendChild(el);
+    return el;
+  });
+  layout();
+  startAuto();
+
+  return { move: move, goToIndex: goToIndex, startAuto: startAuto, stopAuto: stopAuto, getIndex: function(){ return index; } };
+}
+
+var pcCoverflow = createCoverflow({
+  stageId: "pc-cvf",
+  items: photoGalleryImages,
+  itemClass: "pc-cvf-item",
+  getSrc: function(src){ return src; },
+  getAlt: function(){ return "Photo from along the way"; },
+  spacing: 250,
+  sideScale: 0.58,
+  farScale: 0.4,
+  sideOpacity: 0.55,
+  farOpacity: 0,
+  sideFilter: "brightness(0.82)",
+  dotsId: "pc-dots",
+  autoIntervalMs: 4000
+});
+
+function movePhoto(dir){ pcCoverflow.move(dir); }
+function goToPhoto(i){ pcCoverflow.goToIndex(i); }
+function startPcAuto(){ pcCoverflow.startAuto(); }
+function stopPcAuto(){ pcCoverflow.stopAuto(); }
+
+/* PHGALLERYZ — CATEGORY CAROUSEL */
+var pzCategories = [
+  {img:"assets/phgalleryz/phz_03.jpg", title:"Adventure & Outdoor", target:"pzc-adventure"},
+  {img:"assets/phgalleryz/phz_09.jpg", title:"Travel & Hospitality", target:"pzc-travel"},
+  {img:"assets/phgalleryz/phz_15.jpg", title:"Urban & Lifestyle", target:"pzc-urban"},
+  {img:"assets/phgalleryz/phz_20.jpg", title:"Mood & Atmosphere", target:"pzc-mood"},
+  {img:"assets/phgalleryz/phz_01.jpg", title:"Community & Local", target:"pzc-community"}
+];
+var ccIndex = 0;
+var ccAutoTimer = null;
+
+function renderCcDots(){
+  var dotsWrap = document.getElementById("cc-dots");
+  if(!dotsWrap) return;
+  dotsWrap.innerHTML = "";
+  pzCategories.forEach(function(_, i){
+    var dot = document.createElement("div");
+    dot.className = "pc-dot" + (i === ccIndex ? " active" : "");
+    dot.setAttribute("onclick", "goToCategory(" + i + ")");
+    dotsWrap.appendChild(dot);
+  });
+}
+
+function renderCategoryCarousel(){
+  if(!document.getElementById("cc-carousel")) return;
+  var n = pzCategories.length;
+  var leftIdx = (ccIndex - 1 + n) % n;
+  var rightIdx = (ccIndex + 1) % n;
+  document.getElementById("cc-left-img").src = pzCategories[leftIdx].img;
+  document.getElementById("cc-left-title").textContent = pzCategories[leftIdx].title;
+  document.getElementById("cc-center-img").src = pzCategories[ccIndex].img;
+  document.getElementById("cc-center-title").textContent = pzCategories[ccIndex].title;
+  document.getElementById("cc-right-img").src = pzCategories[rightIdx].img;
+  document.getElementById("cc-right-title").textContent = pzCategories[rightIdx].title;
+  renderCcDots();
+}
+
+var ccAnimating = false;
+var CC_ANIM_MS = 600;
+var CC_SLOTS = ["left", "center", "right"];
+
+function ccAnimateTo(newIndex, dir, after){
+  if(ccAnimating) return;
+  ccAnimating = true;
+  var n = pzCategories.length;
+  var targets = {
+    left: pzCategories[(newIndex - 1 + n) % n],
+    center: pzCategories[newIndex],
+    right: pzCategories[(newIndex + 1) % n]
+  };
+  var restTransform = "translateX(-33.3333%)";
+  var moveTransform = dir === 1 ? "translateX(-66.6666%)" : "translateX(0%)";
+  var bufferSuffix = dir === 1 ? "-next" : "-prev";
+
+  CC_SLOTS.forEach(function(slot){
+    var bufferImg = document.getElementById("cc-" + slot + "-img" + bufferSuffix);
+    bufferImg.src = targets[slot].img;
+
+    var track = document.getElementById("cc-" + slot + "-track");
+    track.style.transition = "transform " + CC_ANIM_MS + "ms ease";
+    track.style.transform = moveTransform;
+  });
+
+  setTimeout(function(){
+    ccIndex = newIndex;
+    CC_SLOTS.forEach(function(slot){
+      var track = document.getElementById("cc-" + slot + "-track");
+      track.style.transition = "none";
+      track.style.transform = restTransform;
+      document.getElementById("cc-" + slot + "-img").src = targets[slot].img;
+      document.getElementById("cc-" + slot + "-title").textContent = targets[slot].title;
+    });
+    void document.getElementById("cc-center-track").offsetWidth;
+
+    CC_SLOTS.forEach(function(slot){
+      document.getElementById("cc-" + slot + "-track").style.transition = "";
+    });
+
+    renderCcDots();
+    ccAnimating = false;
+    if(after) after();
+  }, CC_ANIM_MS);
+}
+
+function moveCategory(dir){
+  if(ccAnimating) return;
+  stopCcAuto();
+  var n = pzCategories.length;
+  var newIndex = (ccIndex + dir + n) % n;
+  ccAnimateTo(newIndex, dir, function(){
+    startCcAuto();
+  });
+}
+
+function goToCategory(i){
+  if(ccAnimating || i === ccIndex) return;
+  stopCcAuto();
+  var n = pzCategories.length;
+  var fwd = (i - ccIndex + n) % n;
+  var bwd = (ccIndex - i + n) % n;
+  var dir = fwd <= bwd ? 1 : -1;
+  var steps = Math.min(fwd, bwd);
+  function stepMove(remaining){
+    if(remaining <= 0){ startCcAuto(); return; }
+    var next = (ccIndex + dir + n) % n;
+    ccAnimateTo(next, dir, function(){ stepMove(remaining - 1); });
+  }
+  stepMove(steps);
+}
+
+function openCategory(){
+  var target = document.getElementById(pzCategories[ccIndex].target);
+  if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function startCcAuto(){
+  stopCcAuto();
+  ccAutoTimer = setInterval(function(){
+    if(ccAnimating) return;
+    var n = pzCategories.length;
+    ccAnimateTo((ccIndex + 1) % n, 1);
+  }, 4500);
+}
+
+function stopCcAuto(){
+  if(ccAutoTimer){
+    clearInterval(ccAutoTimer);
+    ccAutoTimer = null;
+  }
+}
+
+renderCategoryCarousel();
+startCcAuto();
+
+/* CORONADO GALLERY (PhGalleryZ client case, sliding single-frame carousel) */
+var coronadoGalleryImages = [
+  {src:"assets/phgalleryz/coronado_pg_reunite.jpg", alt:"Two Coronado cocktails on the bar with 'Where friends reunite' tagline"},
+  {src:"assets/phgalleryz/coronado_pg_margarita_citrus.jpg", alt:"Coronado citrus margarita with lime and orange garnish on black backdrop"},
+  {src:"assets/phgalleryz/coronado_pg_old_fashioned.jpg", alt:"Coronado old fashioned style cocktail with lime wheel on black backdrop"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5536.jpg", alt:"Coronado cocktails, wine, and menu styled together for Instagram"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5332.jpg", alt:"Margarita with lime and mint garnish, shot on a dark backdrop"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5368.jpg", alt:"Strawberry cocktail with mint and fresh strawberries, dark backdrop"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5492.jpg", alt:"Wine bottle, glass, and grapes staged at the Coronado bar"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5518.jpg", alt:"Coronado bar shelves with wine, menu, and greenery"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5552.jpg", alt:"Orange margarita with tequila bottle and menu at the bar"},
+  {src:"assets/phgalleryz/coronado_pg_IMG_5586.jpg", alt:"Tequila bottle and citrus margarita staged with the Coronado menu"}
+];
+var cgIndex = 0;
+var cgAnimating = false;
+var CG_ANIM_MS = 600;
+var cgAutoTimer = null;
+
+function renderCgDots(){
+  var dotsWrap = document.getElementById("cg-dots");
+  dotsWrap.innerHTML = "";
+  coronadoGalleryImages.forEach(function(_, i){
+    var dot = document.createElement("div");
+    dot.className = "cg-dot" + (i === cgIndex ? " active" : "");
+    dot.setAttribute("onclick", "goToCg(" + i + ")");
+    dotsWrap.appendChild(dot);
+  });
+}
+
+function renderCgCarousel(){
+  var img = document.getElementById("cg-img");
+  img.src = coronadoGalleryImages[cgIndex].src;
+  img.alt = coronadoGalleryImages[cgIndex].alt;
+  renderCgDots();
+}
+
+function cgAnimateTo(newIndex, dir, after){
+  if(cgAnimating) return;
+  cgAnimating = true;
+  var restTransform = "translateX(-33.3333%)";
+  var moveTransform = dir === 1 ? "translateX(-66.6666%)" : "translateX(0%)";
+  var bufferSuffix = dir === 1 ? "-next" : "-prev";
+  var target = coronadoGalleryImages[newIndex];
+
+  var bufferImg = document.getElementById("cg-img" + bufferSuffix);
+  bufferImg.src = target.src;
+  bufferImg.alt = target.alt;
+
+  var track = document.getElementById("cg-track");
+  track.style.transition = "transform " + CG_ANIM_MS + "ms ease";
+  track.style.transform = moveTransform;
+
+  setTimeout(function(){
+    cgIndex = newIndex;
+    track.style.transition = "none";
+    track.style.transform = restTransform;
+    var img = document.getElementById("cg-img");
+    img.src = target.src;
+    img.alt = target.alt;
+    void track.offsetWidth; // force reflow before re-enabling transitions
+    track.style.transition = "";
+
+    renderCgDots();
+    cgAnimating = false;
+    if(after) after();
+  }, CG_ANIM_MS);
+}
+
+function moveCg(dir){
+  if(cgAnimating) return;
+  stopCgAuto();
+  var n = coronadoGalleryImages.length;
+  var newIndex = (cgIndex + dir + n) % n;
+  cgAnimateTo(newIndex, dir, function(){
+    startCgAuto();
+  });
+}
+
+function goToCg(i){
+  if(cgAnimating || i === cgIndex) return;
+  stopCgAuto();
+  var n = coronadoGalleryImages.length;
+  var fwd = (i - cgIndex + n) % n;
+  var bwd = (cgIndex - i + n) % n;
+  var dir = fwd <= bwd ? 1 : -1;
+  var steps = Math.min(fwd, bwd);
+  function stepMove(remaining){
+    if(remaining <= 0){ startCgAuto(); return; }
+    var next = (cgIndex + dir + n) % n;
+    cgAnimateTo(next, dir, function(){ stepMove(remaining - 1); });
+  }
+  stepMove(steps);
+}
+
+function startCgAuto(){
+  stopCgAuto();
+  cgAutoTimer = setInterval(function(){
+    if(cgAnimating) return;
+    var n = coronadoGalleryImages.length;
+    cgAnimateTo((cgIndex + 1) % n, 1);
+  }, 4000);
+}
+
+function stopCgAuto(){
+  if(cgAutoTimer){
+    clearInterval(cgAutoTimer);
+    cgAutoTimer = null;
+  }
+}
+
+renderCgCarousel();
+startCgAuto();
+
+/* Coronado's Case — two clips crossfading into each other, then looping */
+function cwOnVideoEnded(which){
+  var vidA = document.getElementById("cw-client-video-a");
+  var vidB = document.getElementById("cw-client-video-b");
+  if(!vidA || !vidB) return;
+  var incoming = which === "a" ? vidB : vidA;
+  var outgoing = which === "a" ? vidA : vidB;
+  incoming.currentTime = 0;
+  incoming.play();
+  incoming.style.opacity = 1;
+  outgoing.style.opacity = 0;
+}
+
+var cwFlipTimer = null;
+
+function openCoronadoModal(){
+  var modal = document.getElementById("cw-poster-modal");
+  document.body.classList.add("sw-modal-open");
+  modal.classList.remove("flipped");
+  modal.classList.add("active");
+
+  clearTimeout(cwFlipTimer);
+  cwFlipTimer = setTimeout(function(){
+    modal.classList.add("flipped");
+    startCgAuto();
+    var vidA = document.getElementById("cw-client-video-a");
+    if(vidA){ vidA.currentTime = 0; vidA.play(); }
+  }, 380);
+}
+
+function closeCoronadoModal(e){
+  if(e) e.preventDefault();
+  var modal = document.getElementById("cw-poster-modal");
+  clearTimeout(cwFlipTimer);
+  modal.classList.remove("flipped");
+  document.body.classList.remove("sw-modal-open");
+  stopCgAuto();
+  var vidA = document.getElementById("cw-client-video-a");
+  var vidB = document.getElementById("cw-client-video-b");
+  if(vidA) vidA.pause();
+  if(vidB) vidB.pause();
+  setTimeout(function(){
+    modal.classList.remove("active");
+  }, 300);
+}
+
+document.addEventListener("keydown", function(e){
+  var cwModal = document.getElementById("cw-poster-modal");
+  if(e.key === "Escape" && cwModal && cwModal.classList.contains("active")){
+    closeCoronadoModal();
+  }
+});
+
+/* Mini image carousels (Coronado campaign/email screenshots) — auto-rotate */
+document.querySelectorAll('.cw-mini-carousel').forEach(function(car){
+  if(car.closest('.cw-row-ads')) return; // ADs carousels are click-activated, see below
+  var slides = car.querySelectorAll('img');
+  if(slides.length < 2) return;
+  var idx = 0;
+  setInterval(function(){
+    slides[idx].classList.remove('active');
+    idx = (idx + 1) % slides.length;
+    slides[idx].classList.add('active');
+  }, 4000);
+});
+
+/* ADs Instagram carousels — click to advance, with prev/next arrows */
+document.querySelectorAll('.cw-row-ads .cw-mini-carousel').forEach(function(car){
+  var slides = car.querySelectorAll('img');
+  if(slides.length < 2) return;
+  var prevBtn = car.querySelector('.cw-mc-prev');
+  var nextBtn = car.querySelector('.cw-mc-next');
+  var idx = 0;
+
+  function render(){
+    slides.forEach(function(s, i){ s.classList.toggle('active', i === idx); });
+    if(prevBtn) prevBtn.hidden = (idx === 0);
+    if(nextBtn) nextBtn.hidden = (idx === slides.length - 1);
+  }
+
+  function goNext(){ if(idx < slides.length - 1){ idx++; render(); } }
+  function goPrev(){ if(idx > 0){ idx--; render(); } }
+
+  car.style.cursor = 'pointer';
+  car.addEventListener('click', goNext);
+  if(nextBtn) nextBtn.addEventListener('click', function(e){ e.stopPropagation(); goNext(); });
+  if(prevBtn) prevBtn.addEventListener('click', function(e){ e.stopPropagation(); goPrev(); });
+
+  render();
+});
+
+/* Social work — brand logo coverflow */
+var swBrands = [
+  { id: "0", name: "Coronado", logo: "assets/social/coronado_logo.png" },
+  { id: "1", name: "Per Tutti", logo: "assets/social/pertutti_logo.png" },
+  { id: "2", name: "Biokoa", logo: "assets/social/biokoa_logo.png" },
+  { id: "3", name: "ADs", logo: "assets/social/ads_logo.png" }
+];
+var swOpenId = null;
+
+var swCoverflow = createCoverflow({
+  stageId: "sw-cvf",
+  items: swBrands,
+  itemClass: "sw-cvf-item",
+  getSrc: function(b){ return b.logo; },
+  getAlt: function(b){ return b.name + " logo"; },
+  spacing: 210,
+  sideScale: 0.6,
+  farScale: 0.4,
+  sideOpacity: 0.38,
+  farOpacity: 0,
+  sideFilter: "grayscale(0.15)",
+  autoIntervalMs: 4000,
+  onCenterClick: function(){ swOpenCenter(); },
+  onSideSettle: function(){ swOpenCenter(); }
+});
+
+function swMove(dir){
+  swCoverflow.move(dir);
+  if(swOpenId !== null) swClose();
+}
+
+function swOpenCenter(){
+  swCoverflow.stopAuto();
+  var brand = swBrands[swCoverflow.getIndex()];
+  swBrands.forEach(function(b){
+    var el = document.getElementById("sw-detail-" + b.id);
+    if(el) el.style.display = (b.id === brand.id) ? "" : "none";
+  });
+  swOpenId = brand.id;
+  var modal = document.getElementById("sw-modal");
+  modal.classList.add("active");
+  modal.scrollTop = 0;
+  document.body.classList.add("sw-modal-open");
+}
+
+function swClose(e){
+  if(e) e.preventDefault();
+  var modal = document.getElementById("sw-modal");
+  modal.classList.remove("active");
+  document.body.classList.remove("sw-modal-open");
+  swOpenId = null;
+  startSwAuto();
+}
+
+function startSwAuto(){
+  if(swOpenId !== null) return;
+  swCoverflow.startAuto();
+}
+
+function stopSwAuto(){
+  swCoverflow.stopAuto();
+}
+
+(function(){
+  var cf = document.getElementById("sw-coverflow");
+  var startX = null;
+  function onStart(x){ startX = x; }
+  function onEnd(x){
+    if(startX === null) return;
+    var dx = x - startX;
+    startX = null;
+    if(Math.abs(dx) > 40){
+      swMove(dx < 0 ? 1 : -1);
+    }
+  }
+  cf.addEventListener("touchstart", function(e){ onStart(e.changedTouches[0].clientX); }, { passive: true });
+  cf.addEventListener("touchend", function(e){ onEnd(e.changedTouches[0].clientX); }, { passive: true });
+  cf.addEventListener("mousedown", function(e){ onStart(e.clientX); });
+  cf.addEventListener("mouseup", function(e){ onEnd(e.clientX); });
+})();
+
+/* PhGalleryZ standalone window */
+function openPhGalleryZ(e){
+  if(e) e.preventDefault();
+  document.getElementById('phgalleryz').classList.add('pz-visible');
+  document.body.classList.add('pz-open');
+  document.getElementById('phgalleryz').scrollTop = 0;
+}
+function closePhGalleryZ(e){
+  if(e) e.preventDefault();
+  document.getElementById('phgalleryz').classList.remove('pz-visible');
+  document.body.classList.remove('pz-open');
+}
+
+/* Projects standalone window */
+function openProjectsWindow(e){
+  if(e) e.preventDefault();
+  document.getElementById('projects-window').classList.add('pz-visible');
+  document.body.classList.add('pz-open');
+  document.getElementById('projects-window').scrollTop = 0;
+}
+function closeProjectsWindow(e){
+  if(e) e.preventDefault();
+  document.getElementById('projects-window').classList.remove('pz-visible');
+  document.body.classList.remove('pz-open');
+}
+
+function goToProjectGallery(e){
+  if(e) e.preventDefault();
+  openProjectsWindow();
+  setTimeout(function(){
+    var el = document.getElementById('projects');
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 60);
+}
+
+function goToAAFProject(e){
+  if(e) e.preventDefault();
+  openProjectsWindow();
+  setTimeout(function(){ openProjectModal(3); }, 60);
+}
+
+/* Shared nav bar — used on main page and inside the Projects / PhGalleryZ windows */
+function navGoAbout(e){
+  if(e) e.preventDefault();
+  closeProjectsWindow(); closePhGalleryZ();
+  setTimeout(function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  }, 60);
+}
+function navGoContact(e){
+  if(e) e.preventDefault();
+  closeProjectsWindow(); closePhGalleryZ();
+  setTimeout(function(){
+    var el = document.getElementById('contact');
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 60);
+}
+function navGoProjects(e){
+  if(e) e.preventDefault();
+  closePhGalleryZ();
+  openProjectsWindow();
+}
+function navGoPhGalleryZ(e){
+  if(e) e.preventDefault();
+  closeProjectsWindow();
+  openPhGalleryZ();
+}
+</script>
+
+</body>
+</html>
